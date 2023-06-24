@@ -21,7 +21,7 @@ const dbSettings = {
 
     try {
         const pool = await sql.connect(dbSettings)
-        console.log('Conectado a la base de datos perrona supercool')
+        console.log('Conectado a la base de datos')
         return pool  
     } catch (error) {
         console.error('problemas en la conexion')
