@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body style="background-color: #C2D7DB;">
+      <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
+        <div class="container-fluid d-flex justify-content-start">
+            <div class="navbar-toggler-icon"> </div> <!--icono-->
+            <div class="p-2"> PANEL ADMINSTRATIVO </div>
+        </div>
+        
+        <div class="d-flex justify-content-around" style="background-color: #385277;">
+          <!--NAVEGACION -->
+          <div class="p-3"> <a href="#seccionObservar" style="text-decoration: none; color: #a3c1d5;">Observar</a></div>
+          <div class="p-3"> <a href="" style="text-decoration: none; color: #a3c1d5;">Inventario</a></div>
+          <div class="p-3"> <a href="/Crear_registro" style="text-decoration: none; color: #a3c1d5;">Registrar</a></div>
+          <div class="p-3"> <a href="" style="text-decoration: none; color: #a3c1d5;">Proveedor</a></div>
+
+          <!--SALIR ( debido a desorden posicitonamiento)-->
+          <div style="left: 39rem; position: relative; top: 2px;"><a href="/Login" style="text-decoration: none; color: #a3c1d5;">SALIR</a></div>
+        </div>
+        <!--icono salir -->
+        <div class="row d-flex "style=" bottom: 40px; right:  10px; position: relative;">
+          <a href="/Login"><img src="https://i.ibb.co/0KkfNFN/exitl.png" style="height: 2rem;"></a>
+        </div>
+      </nav>
+      
+      <!--container  ocupara toda la pantalla a excepcion de una parte -->
+      <div class="container "">
+              <!--Columna, y donde el text se encontrar centrado-->
+        <div class="row text-center"  >
+          <div  class="p-4" style="font-size: 24px; color: #385277;">AÑADIR REGISTRO</div>
+          
+          <!--cada contenedor en una colmna ocupa 12 partes de la pantalla.-->
+          <!--columna ocupando 4-->
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+            <div class="container  p-3 btn"> 
+              <div class="border border-3 border-dark">
+                <div style="background-color: #385277;">
+                  <img src="https://i.ibb.co/D7jSQyX/ingresar.png" style="height: 4rem;">
+                  <div style="background-color: #ffffff; font-size: 23px; color: #00264b; " class="justify-content-center " >REGISTRAR</div>
+                  <div class="container p-3" style=" background-color: #ffffff; color: #00264b;">
+                    Aqui puedes registrar lo nuevo solo (productos)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!--columna ocupando 4-->
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4  ">
+            <div class="container  p-3 btn"> 
+              <div class="border border-3 border-dark">
+                <div style="background-color: #385277;">
+                  <img src="https://i.ibb.co/zHH3tDf/agregar-proveedor.png" style="height: 4rem;">
+                  <div style="background-color: #ffffff; font-size: 23px; color: #00264b; " class="justify-content-center " >PROVEEDOR</div>
+                  <div class="container p-3" style=" background-color: #ffffff; color: #00264b;">
+                    Aqui puedes registrar lo nuevo solo (proveedores)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--columna ocupando 4 = 12 ocupando en pantalla-->
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4  ">
+            <div class="container  p-3 btn"> 
+              <div class="border border-3 border-dark">
+                <div style="background-color: #385277;">
+                  <img src="https://i.ibb.co/PMQbk7n/inventario.png" style="height: 4rem;">
+                  <div style="background-color: #ffffff; font-size: 23px; color: #00264b; " class="justify-content-center " >INVENTARIO</div>
+                  <div class="container p-3" style=" background-color: #ffffff; color: #00264b;">
+                    Aqui podras realizar el proceso de Egreso
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Separadoress-->
+          <div class="p-5"></div>
+          <div class="p-2"></div>
+          <div class="p-2 " style="font-size: 24px; color: #385277; " id="seccionObservar">OBSERVAR POR PRODUCTOS - PROVEEDORES</div>
+          <div class="p-2"></div>
+
+          <!--columnas in7eriores-->
+          <!--columna ocupando 0 inicial,iniciara en la seccion de abajo-->
+          <!--usaremos 2  para que quede un espacio  y luego colocamos el 4 -->
+          <div class="col-2"></div>
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+            <div class="container  p-3 btn"> 
+              <div class="border border-3 border-dark">
+                <div style="background-color: #385277;">
+                  <img src="https://i.ibb.co/7jvBpcr/ver-product.png" style="height: 4rem;">
+                  <div style="background-color: #ffffff; font-size: 23px; color: #00264b; " class="justify-content-center " >VER REGISTROS</div>
+                  <div class="container p-3" style=" background-color: #ffffff; color: #00264b;">
+                    Aqui puedes revisar los productos registrados
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!--igual que arriba-->
+          <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+            <div class="container  p-3 btn"> 
+              <div class="border border-3 border-dark">
+                <div style="background-color: #385277;">
+                  <img src="https://i.ibb.co/XFR7rQ5/REPARTIDOR.png" style="height: 4rem;">
+                  <div style="background-color: #ffffff; font-size: 23px; color: #00264b; " class="justify-content-center " >VER PROVEEDORES</div>
+                  <div class="container p-3" style=" background-color: #ffffff; color: #00264b;">
+                    Aqui puedes ver los proveedores registrados
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
+      <div class="p-3"></div>
+      <footer class="w-100 p-3 position-absolute z-3 align-self-end" style="background-color: #00264b;  ">
+      </footer> 
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>
