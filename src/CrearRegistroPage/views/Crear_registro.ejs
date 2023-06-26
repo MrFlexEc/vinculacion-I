@@ -153,14 +153,25 @@
                             </div>
 
                             <!-- input de ubicacion --> 
+                            
+                            
                             <div class="col-5 ">
-                                <div class="justify-content-start fs-5 " style="color: #385277;">
-                                    <div class="opacity-75">
-                                        Ubicacion 
-                                        <input type="text" class=" form-control rounded-4 border-2" 
-                                        style="background-color: #99B3D8; color: black; border-color: #00264b;" >
-                                    </div>
-                                </div>
+            
+                                <div class="justify-content-start  fs-5" style="color: #385277; position: relative; top: 5px; "> 
+                                      Ubicacion
+                                    <select class=" btn border-2  seleccionar dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
+                                        <option selected="selected" style="color: #707070;">seleccione..</option>
+                                        <option>perchas 1aaaaaaaaaaaa</option>
+                                        <option>perchas 2</option>
+                                        <option>x</option>
+
+                                    </select>
+                                    <script>
+                                        $(document).ready(function() {
+                                        $('Seleccionar').select2();
+                                        })
+                                    </script>
+                            </div>
                             </div>
                             <div class="col-1"></div><!-- espaciado ocupando el sobrante de 1 columna total 12 --> 
                                
@@ -186,15 +197,37 @@
             
             <div class="col-2 p-3">
                 <!-- input de precio --> 
-                <div class="container " style="position: relative;top: 29px;">
-                
+                <!--<div class="container " style="position: relative;bottom: 3px;">
+                    <div class="justify-content-center fs-5 " style="color: #385277">
+                        Precio
+                    </div>
                     <input type="text" placeholder="$" class="form-control rounded-4 border-2  fs-2" 
                     style=" color:black ;background-color: #A4B3C8; color: black; border-color: #385277; 
                     padding: 33px; width: 11rem;">
                     
-                    <div class="justify-content-center fs-5 " style="color: #385277">
-                        Precio
+                    
+                </div>
+                --> 
+                <div class="justify-content-center fs-5 " style="color: #385277">
+                    Precio  $
+                </div>
+                <div class="justify-content-center d-flex " style="color: #385277; position: relative; left: 36px;">
+                    
+                    <!-- input de cantidad --> 
+                    <div class="opacity-75"> 
+                        <input type="text" placeholder="Publico" class=" form-control rounded-3 border-2" 
+                         style="background-color: #A4B3C8; color: black; border-color: #00264b; padding-bottom: 1px; width: 100px;" >
                     </div>
+
+                    <div class="opacity-75">
+                        <input type="text" placeholder="Mayor"  class=" form-control rounded-3 border-2" 
+                         style="background-color: #A4B3C8; color: black; border-color: #00264b; padding-bottom: 1px; width: 100px;" >
+                    </div>
+                   
+                </div>
+                <div class="opacity-75">
+                    <input type="text" placeholder="Frecuente"  class=" form-control rounded-3 border-2" 
+                     style="background-color: #A4B3C8; color: black; border-color: #00264b; padding-bottom: 1px; width: 200px;" >
                 </div>
                 
 
@@ -208,20 +241,17 @@
                          style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                     </div>
 
-                    <div class="justify-content-start fs-5" style="color: #385277">
                     <div class="opacity-75">
                          <!-- input de cantidad maxima -->  
                         <input type="text" placeholder="Max"  class=" form-control rounded-4 border-2" 
                          style="background-color: #99B3D8; color: black; border-color: #00264b;" >
-                        </div>
                     </div>
 
-                    <div class="justify-content-start fs-5" style="color: #385277;">
                     <div class="opacity-75">
                          <!-- input de cantidad maxima -->  
                         <input type="text" placeholder="Min" class=" form-control rounded-4 border-2" 
                          style="background-color: #99B3D8; color: black; border-color: #00264b;" >
-                        </div>
+                    </div>
                 </div>
 
                 
@@ -236,7 +266,7 @@
         
     </div>
     <!-- SIMPLEMENTE ICONO PARA HOME -->  
-    <footer class="w-100 p-3 position-absolute z-3 align-self-end" style="background-color: #00264b;  ">
+    <footer class="w-100 p-3 position-absolute z-3 align-self-end" style="background-color:#385277  ">
             <a href="/home">
             <label style="color: white;">HOME</label><img src="https://i.ibb.co/QF1WGmT/casa-1.png" style="height: 2rem; ">
             </a>
