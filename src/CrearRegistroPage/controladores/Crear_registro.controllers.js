@@ -2,10 +2,14 @@
 const dbConnection = require('../../Database/database')
 const sql = require("mssql")
 
-//Ver Home
-const authPageCrearProveedor = async (req, res) =>{
+
+//Ver Interfaz para agregar registro
+const authPageCrearRegistro = async (req, res) =>{
     if(req.session.loggedin){
-        res.render('./CrearProveedorPage/views/Crear_proveedor',{
+        const pool = await dbConnection.getConnection();
+        const resultmarca = await pool.request().query('SELECT * FROM USUARIO2')
+
+        res.render('./CrearRegistroPage/views/Crear_registro',{
             login:true,
             name:req.session.name,
             rol:req.session.rol
@@ -23,17 +27,22 @@ const authPageCrearProveedor = async (req, res) =>{
     }
 }
 
-
-const InsertProveedor = async (req, res) =>{
+const InsertRegistro = async (req, res) =>{
     try {
 
-        const nombreProveedor = req.body.nombreProveedor;
-        const empresaProveedor = req.body.empresaProveedor;
-        const correoProveedor = req.body.correoProveedor;
-        const contactoProveedor = req.body.contactoProveedor;
-        const rucProveedor = req.body.rucProveedor;
-        const direccionProveedor = req.body.direccionProveedor;
-        const observacionProveedor = req.body.observacionProveedor;
+        const codigoRegistro = req.body.codigoRegistro;
+        const nombreRegistro = req.body.nombreRegistro;
+        const descripcionRegistro = req.body.descripcionRegistro;
+        const marcaRegistro = req.body.marcaRegistro;
+        const categoriaRegistro = req.body.categoriaRegistro;
+        const proveedorRegistro = req.body.proveedorRegistro;
+        const medidaRegistro = req.body.medidaRegistro;
+        const modeloRegistro = req.body.modeloRegistro;
+        const observacionRegistro = req.body.observacionRegistro;
+        const ubicacionRegistro = req.body.ubicacionRegistro;
+
+
+
         const pool = await dbConnection.getConnection();
         await pool.request().input('NOMBREPROOVEDOR', sql.VarChar(50), nombreProveedor)
                             .input('RUCPROOVEDOR', sql.VarChar(15), rucProveedor)
@@ -65,7 +74,11 @@ const InsertProveedor = async (req, res) =>{
 }
 
 
+
+
+
 module.exports ={
-    authPageCrearProveedor,
-    InsertProveedor
+    authPageCrearRegistro,
+    InsertRegistro
+
 }
