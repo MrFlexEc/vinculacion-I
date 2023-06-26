@@ -14,19 +14,6 @@
 <body style="background-color: #C2D7DB;">
 
     <% if (login){ %>
-        <% if (typeof alert != "undefined") { %>
-            <script>
-                Swal.fire({
-                title: '<%= alertTitle %>',
-                text:'<%= alertMessage %>',
-                icon: '<%= alertIcon %>',
-                showConfirmButton:<%= showConfirmButton %>,
-                timer:<%= timer %>
-                }).then(()=>{
-                    window.location='./<%= ruta %>'
-                })
-            </script>
-        <% }; %>
          <!-- Aqui ya te la sabes --> 
 
    <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
