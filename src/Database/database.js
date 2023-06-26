@@ -7,7 +7,7 @@ const dbSettings = {
     user:'Vincu',
     password:'Vincu2023',
     server:'localhost',
-    database:"PruebaVincu",
+    database:"Vinculaciondb2",
     port:1433,
     options:{
         encrypt: true,

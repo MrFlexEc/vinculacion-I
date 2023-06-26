@@ -9,22 +9,6 @@ const Login = async (req, res) =>{
     res.render('./LoginPage/views/Login')
 }
 
-//auti
-//Ver ejemplo ruta 
-const ejem = async (req, res) =>{
-    if(req.session.loggedin){
-        res.render('./LoginPage/views/ejemplo',{
-            login:true,
-            name:req.session.name
-        });
-    }else{
-        res.render('./LoginPage/views/ejemplo',{
-            login:false,
-            name:"Debe iniciar sesion"
-        });
-    }
-}
-
 
 //validar usuario
 const LoginValidacion = async (req, res) =>{
@@ -37,8 +21,8 @@ const LoginValidacion = async (req, res) =>{
             const result = await pool.request()
                 .input('NOMBRE', sql.VarChar(60), usuario)
                 .input('CONTRASENIA', sql.VarChar(30), contrasenia)
-                .query("SELECT * FROM Admin WHERE NOMBRE = @NOMBRE")
-                if(result.recordset.length==0 || !(contrasenia == result.recordset[0].CONTRASENIA)){
+                .query("select u.IDUSUARIO,u.NOMBREUSUARIO,u.CONTRASENIAUSUARIO,r.NOMBREROL from Usuario u inner join Rol r on u.IDROL = r.IDROL where NOMBREUSUARIO =@NOMBRE")
+                if(result.recordset.length==0 || !(contrasenia == result.recordset[0].CONTRASENIAUSUARIO)){
                       res.render('./LoginPage/views/Login',{
                         alert:true,
                         alertTitle:"ERROR",
@@ -51,8 +35,10 @@ const LoginValidacion = async (req, res) =>{
                        
                 }else{
                     req.session.loggedin=true;
-                    req.session.name = result.recordset[0].NOMBRE;
+                    req.session.name = result.recordset[0].NOMBREUSUARIO;
+                    req.session.rol = result.recordset[0].NOMBREROL;
                     console.log( req.session.name)
+                    console.log( req.session.rol)
                     res.render('./LoginPage/views/Login',{
                         alert:true,
                         alertTitle:"INICIO DE SESION",
@@ -60,7 +46,7 @@ const LoginValidacion = async (req, res) =>{
                         alertIcon:'success',
                         showConfirmButton:false,
                         timer:1500,
-                        ruta:'ejemplo'
+                        ruta:'home'
                       })
                 }
         }
@@ -77,13 +63,15 @@ const LoginValidacion = async (req, res) =>{
         }
     } 
     catch (error) {
-        
+        return res.status(500).json({
+            message: error.message
+        }) 
     }
 }
 
 const destroysession = async (req, res) =>{
     req.session.destroy(()=>{
-        res.redirect('/ejemplo')
+        res.redirect('/login')
     })
 }
 
@@ -103,10 +91,13 @@ const authPages = async (req, res) =>{
     }
 }*/
 
+
+
+
+
+
 module.exports ={
     Login,
     LoginValidacion,
-    ejem,
     destroysession
-   // authPages
 }

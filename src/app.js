@@ -35,7 +35,9 @@ app.use(express.urlencoded({extended: false}));
 
 //importar las rutas
 app.use(require('./LoginPage/rutas/login.router'));
+app.use(require('./HomePage/rutas/home.router'));
+app.use(require('./CrearProveedorPage/rutas/Crear_proveedor.router'));
 //invocar metodos express este caso para levantar el servidor
 app.listen(app.get('port'), ()=>{
-    console.log("Servidor levantado http://localhost:2000");
+    console.log("Servidor levantado http://localhost:2000/login");
 })
