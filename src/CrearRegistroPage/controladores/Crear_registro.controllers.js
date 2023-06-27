@@ -7,7 +7,7 @@ const sql = require("mssql")
 const authPageCrearRegistro = async (req, res) =>{
     if(req.session.loggedin){
         const pool = await dbConnection.getConnection();
-        const resultmarca = await pool.request().query('SELECT * FROM USUARIO2')
+        //const resultmarca = await pool.request().query('SELECT * FROM USUARIO2')
 
         res.render('./CrearRegistroPage/views/Crear_registro',{
             login:true,
