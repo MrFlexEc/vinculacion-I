@@ -37,10 +37,8 @@ const LoginValidacion = async (req, res) =>{
                     req.session.loggedin=true;
                     req.session.name = result.recordset[0].NOMBREUSUARIO;
                     req.session.rol = result.recordset[0].NOMBREROL;
-                    req.session.idUsuario = result.recordset[0].IDUSUARIO;
                     console.log( req.session.name)
                     console.log( req.session.rol)
-                    console.log( req.session.idUsuario)
                     res.render('./LoginPage/views/Login',{
                         alert:true,
                         alertTitle:"INICIO DE SESION",

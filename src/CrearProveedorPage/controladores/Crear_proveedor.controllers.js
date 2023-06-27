@@ -42,7 +42,7 @@ const InsertProveedor = async (req, res) =>{
                             .input('CORREOPROOV', sql.VarChar(40), correoProveedor)
                             .input('DIRECCIONPROOV', sql.VarChar(40), direccionProveedor)
                             .input('OBSERVACIONPROOV', sql.VarChar(100), observacionProveedor)
-                            .query('INSERT INTO PROVEEDOR VALUES (@NOMBREPROOVEDOR,@RUCPROOVEDOR,@CONTACTOPROOVEDOR,@EMPRESAPROOV,@CORREOPROOV,@DIRECCIONPROOV,@OBSERVACIONPROOV,GETDATE())')
+                            .query('INSERT INTO PROVEEDOR VALUES (@NOMBREPROOVEDOR,@RUCPROOVEDOR,@CONTACTOPROOVEDOR,@EMPRESAPROOV,@CORREOPROOV,@DIRECCIONPROOV,@OBSERVACIONPROOV)')
                             
                             res.render('./CrearProveedorPage/views/Crear_proveedor',{
                                 login:false,
