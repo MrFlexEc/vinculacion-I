@@ -106,7 +106,7 @@ const InsertProveedor2 = async (req, res) =>{
                             .input('OBSERVACIONPROOV', sql.VarChar(100), observacionProveedor)
                             .query('INSERT INTO PROVEEDOR VALUES (@NOMBREPROOVEDOR,@RUCPROOVEDOR,@CONTACTOPROOVEDOR,@EMPRESAPROOV,@CORREOPROOV,@DIRECCIONPROOV,@OBSERVACIONPROOV,GETDATE())')
                             
-                            res.render('./CrearProveedorPage/views/Crear_proveedor',{
+                            res.render('./CrearProveedorPage/views/Crear_proveedor2',{
                                 login:false,
                                 alert:true,
                                 alertTitle:"EXITOSO",
@@ -114,7 +114,6 @@ const InsertProveedor2 = async (req, res) =>{
                                 alertIcon:'success',
                                 showConfirmButton:true,
                                 timer:false,
-                                ruta:'crearRegistro',
                                
                               })
 

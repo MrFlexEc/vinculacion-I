@@ -4,11 +4,12 @@ const sql = require("mssql")
 
 //datos para la conexion
 const dbSettings = {
-    user:'pruebaNode',
-    password:'jajasalu2',
+    user:'Vincu',
+    password:'Vincu2023',
     server:'localhost',
-    database:"ejemplo2",
+    database:"Vinculaciondb2",
     port:1433,
+    
     options:{
         encrypt: true,
         trustServerCertificate: true,
