@@ -76,7 +76,8 @@
                         <% MARCA=VR.NOMBREMARCA %>
                         <% CATEGORIA=VR.NOMBRECATEGORIA %>
                         <% PROVEEDOR=VR.NOMBREPROOVEDOR %>
-                        <% FECHA=VR.FECHAREPUESTO %>
+                        <% FECHA=VR.FECHAREPUESTO.toLocaleDateString() %>
+                        <% FECHA2=VR.FECHAREPUESTO.toLocaleTimeString() %>
                         <% CANTIDAD=VR.CANTIDADREPUESTO %>
                         <% PRECIO=VR.PUBLICOPRECIO %>
                     <tr>
@@ -85,7 +86,7 @@
                         <th><%= MARCA %></th>
                         <th><%= CATEGORIA %></th>
                         <th><%= PROVEEDOR %></th>
-                        <th><%= FECHA %></th>
+                        <th><%= FECHA %> <%= FECHA2 %></th>
                         <th><%= CANTIDAD %></th>
                         <th>$<%= PRECIO %></th>
                         <th>
