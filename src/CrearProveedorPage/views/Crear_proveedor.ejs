@@ -21,10 +21,10 @@
          <!-- Aqui ya te la sabes --> 
 
    <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
-        <div class="container-fluid d-flex justify-content-start">
-            <div class="p-2"> AGREGAR PROVEEDOR </div>
-            <div style="left: 39rem; position: relative; left: 920px;"> 
-                <input type="date" id="fecha" name="fecha" value="" readonly>
+        <div class="container-fluid">
+            <div class="p-2 d-flex justify-content-start"> AGREGAR PROVEEDOR </div>
+            <div class="d-flex justify-content-end"> 
+                <input  class="text-center" type="date" id="fecha" name="fecha" value="" readonly>
             </div>
 
             <script>
@@ -47,11 +47,11 @@
     <form action="/insertarProveedor" method="POST">
         <div class="container ">
             <div class="row ">
-                <div class="col-10 p-2">
+                <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-7 col-xs-7 p-2  ">
                     <div class="col-12 ">
                         <div class="container ">
                             <div class="row">
-                                <div class="col-5 ">
+                                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 col-xxl-5  ">
                                     <div class="justify-content-start fs-4 " style="color: #385277; ">
                                         <!-- inputs--> 
                                         Nompre - Apellido
@@ -75,7 +75,7 @@
                                 <div class="col-2 "></div>
 
                                 <!-- Utilizando el restante de la col =12--> 
-                                <div class="col-5  ">
+                                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 col-xxl-5   ">
                                     <div class="justify-content-start fs-4 " style="color: #385277; ">
                                         <!-- inputs--> 
                                         Contacto
@@ -100,7 +100,7 @@
                                     <!-- textarea donde estara todo el contenido Adicional--> 
                                     <!-- col inicia abajo de 0 ocupando 6 --> 
 
-                                <div class="col-6  p-3">
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6    p-3">
                                     <div class=" " style="color: #385277; ">
                                         <div class="opacity-75">
                                             <div class="form-floating rounded-4 border-2">
@@ -112,19 +112,16 @@
                                     </div>
                                 </div>
                                 <!-- col inicia nueva  ocupando 5 y 1 total 12 para iniciar de nuevo abajo --> 
-                                <div class="col-5 "></div>
-                                <div class="col-1"></div>
+                                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 col-xxl-5"></div>
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
                                 
                                 <!-- botones de guardar y cancelar, cancelar puede ser para borrar los datos de input-->     
-                                <div class="col-4 ">
-                                    <button type="submit" class="btn rounded-5 border-3" style="background-color: #81C79F; padding: 1rem; width: 12rem; color: black; border-color: #707070;" >GUARDAR</button>
-
+                                <div class="col-ms-12 col-md-3 col-lg-3 col-xl-3 pt-2  pt-2">
+                                    <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #81C79F; border-color: #707070;" >GUARDAR</button>
+    
                                 </div>
-                                <div class="col-4 ">
-                                    <div class="col-4" style="position: relative; right: 4rem;;">
-                                        <button type="button" class="btn rounded-5 border-3" style=" background-color: #D64C6D; padding: 1rem; width: 12rem; color:white; border-color: #707070;" ><a href="home" ><FONT COLOR="black">CANCELAR </FONT></a></button>
-        
-                                    </div>
+                                <div class="col-ms-12 col-md-3 col-lg-3 col-xl-3 pt-2 "> 
+                                        <button type="button" class="btn rounded-5 border-3 form-control pt-4 pb-4" style=" background-color: #D64C6D; color:white; border-color: #707070;" ><a href="home"><FONT COLOR="black">CANCELAR </FONT></a></button>
                                 </div>
                             </div>
                         </div>
