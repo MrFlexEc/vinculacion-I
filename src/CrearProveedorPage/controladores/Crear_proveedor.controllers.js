@@ -54,9 +54,15 @@ const InsertProveedor = async (req, res) =>{
         const contactoProveedor = req.body.contactoProveedor;
         const rucProveedor = req.body.rucProveedor;
         const direccionProveedor = req.body.direccionProveedor;
-        const observacionProveedor = req.body.observacionProveedor;
+        const observacionProveedor = req.body.observacionProveedor; 
         const pool = await dbConnection.getConnection();
-        await pool.request().input('NOMBREPROOVEDOR', sql.VarChar(50), nombreProveedor)
+
+        //validaciones
+        //todos los campos llenos
+        if(nombreProveedor && empresaProveedor && 
+            correoProveedor && contactoProveedor && 
+            rucProveedor &&direccionProveedor&&observacionProveedor){
+            await pool.request().input('NOMBREPROOVEDOR', sql.VarChar(50), nombreProveedor)
                             .input('RUCPROOVEDOR', sql.VarChar(15), rucProveedor)
                             .input('CONTACTOPROOVEDOR', sql.VarChar(50), contactoProveedor)
                             .input('EMPRESAPROOV', sql.VarChar(20), empresaProveedor)
@@ -66,6 +72,7 @@ const InsertProveedor = async (req, res) =>{
                             .query('INSERT INTO PROVEEDOR VALUES (@NOMBREPROOVEDOR,@RUCPROOVEDOR,@CONTACTOPROOVEDOR,@EMPRESAPROOV,@CORREOPROOV,@DIRECCIONPROOV,@OBSERVACIONPROOV,GETDATE())')
                             
                             res.render('./CrearProveedorPage/views/Crear_proveedor',{
+                                bienProve:true,
                                 login:false,
                                 alert:true,
                                 alertTitle:"EXITOSO",
@@ -76,6 +83,22 @@ const InsertProveedor = async (req, res) =>{
                                 ruta:'crearProveedor',
                                
                               })
+        //ningun campo lleno
+        }else{
+            res.render('./CrearProveedorPage/views/Crear_proveedor',{
+                bienProve:false,
+                login:false,
+                alert:true,
+                alertTitle:"ERROR",
+                alertMessage: "Por favor ingrese todos los datos",
+                alertIcon:'error',
+                showConfirmButton:true,
+                timer:false,
+               
+              })
+
+        }
+        
 
         
     } catch (error) {
@@ -97,7 +120,12 @@ const InsertProveedor2 = async (req, res) =>{
         const direccionProveedor = req.body.direccionProveedor;
         const observacionProveedor = req.body.observacionProveedor;
         const pool = await dbConnection.getConnection();
-        await pool.request().input('NOMBREPROOVEDOR', sql.VarChar(50), nombreProveedor)
+        //validaciones
+        //todos los campos llenos
+        if(nombreProveedor && empresaProveedor && 
+            correoProveedor && contactoProveedor && 
+            rucProveedor &&direccionProveedor&&observacionProveedor){
+            await pool.request().input('NOMBREPROOVEDOR', sql.VarChar(50), nombreProveedor)
                             .input('RUCPROOVEDOR', sql.VarChar(15), rucProveedor)
                             .input('CONTACTOPROOVEDOR', sql.VarChar(50), contactoProveedor)
                             .input('EMPRESAPROOV', sql.VarChar(20), empresaProveedor)
@@ -107,6 +135,7 @@ const InsertProveedor2 = async (req, res) =>{
                             .query('INSERT INTO PROVEEDOR VALUES (@NOMBREPROOVEDOR,@RUCPROOVEDOR,@CONTACTOPROOVEDOR,@EMPRESAPROOV,@CORREOPROOV,@DIRECCIONPROOV,@OBSERVACIONPROOV,GETDATE())')
                             
                             res.render('./CrearProveedorPage/views/Crear_proveedor2',{
+                                bienProve:true,
                                 login:false,
                                 alert:true,
                                 alertTitle:"EXITOSO",
@@ -116,6 +145,21 @@ const InsertProveedor2 = async (req, res) =>{
                                 timer:false,
                                
                               })
+        //ningun campo lleno
+        }else{
+            res.render('./CrearProveedorPage/views/Crear_proveedor2',{
+                bienProve:false,
+                login:false,
+                alert:true,
+                alertTitle:"ERROR",
+                alertMessage: "Por favor ingrese todos los datos",
+                alertIcon:'error',
+                showConfirmButton:true,
+                timer:false,
+               
+              })
+
+        }
 
         
     } catch (error) {

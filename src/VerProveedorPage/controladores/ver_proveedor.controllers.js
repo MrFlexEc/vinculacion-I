@@ -6,12 +6,12 @@ const sql = require("mssql")
 const authPageVerProveedor = async (req, res) =>{
     if(req.session.loggedin){
         const pool = await dbConnection.getConnection();
-        const resultVerRegistro = await pool.request().query('select rep.CODIGOREPUESTO, rep.NOMBREREPUESTO, rep.CANTIDADREPUESTO, rep.FECHAREPUESTO, mar.NOMBREMARCA, pro.NOMBREPROOVEDOR, cat.NOMBRECATEGORIA, pre.PUBLICOPRECIO from REPUESTO rep inner join PROVEEDOR pro on rep.IDPROOVEDOR = pro.IDPROOVEDOR inner join MARCA mar on rep.IDMARCA = MAR.IDMARCA inner join CATEGORIA cat on rep.IDCATEGORIA = cat.IDCATEGORIA inner join PRECIO pre on rep.IDRESPUESTO = pre.IDRESPUESTO')
+        const resultVerProveedor = await pool.request().query('select * from PROVEEDOR;')
         res.render('./VerProveedorPage/views/ver_proveedores',{
             login:true,
             name:req.session.name,
             rol:req.session.rol,
-            resultadoVR:resultVerRegistro.recordset
+            resultadoVP:resultVerProveedor.recordset
         });
     }else{
         res.render('./LoginPage/views/Login',{

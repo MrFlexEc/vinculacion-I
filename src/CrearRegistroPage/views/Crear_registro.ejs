@@ -243,17 +243,17 @@
                     Cantidad 
                     <!-- input de cantidad --> 
                     <div class="opacity-75">
-                        <input name="cantidadRegistro"   type="text" class=" form-control rounded-4 border-2" 
+                        <input name="cantidadRegistro"   type="number" class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                     
             
                         <!-- input de cantidad maxima -->  
-                        <input name="cantidadMaximaRegistro" type="text" placeholder="Max"  class=" form-control rounded-4 border-2" 
+                        <input name="cantidadMaximaRegistro" type="number" placeholder="Max"  class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                     
             
                         <!-- input de cantidad minima -->  
-                        <input name="cantidadMinimaRegistro"  type="text" placeholder="Min" class=" form-control rounded-4 border-2" 
+                        <input name="cantidadMinimaRegistro"  type="number" placeholder="Min" class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                                                     
                     </div>
@@ -282,19 +282,35 @@
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           
-        <% if (typeof alert != "undefined") { %>
-            <script>
-                Swal.fire({
-                title: '<%= alertTitle %>',
-                text:'<%= alertMessage %>',
-                icon: '<%= alertIcon %>',
-                showConfirmButton:<%= showConfirmButton %>,
-                timer:<%= timer %>
-                }).then(()=>{
-                    window.location='./<%= ruta %>'
-                })
-            </script>
-        <% }; %>
+        <% if (bienRegi) { %>
+            <% if (typeof alert != "undefined") { %>
+                <script>
+                    Swal.fire({
+                    title: '<%= alertTitle %>',
+                    text:'<%= alertMessage %>',
+                    icon: '<%= alertIcon %>',
+                    showConfirmButton:<%= showConfirmButton %>,
+                    timer:<%= timer %>
+                    }).then(()=>{
+                        window.location='./<%= ruta %>'
+                    })
+                </script>
+            <% }; %>
+            <% } else { %>
+                <% if (typeof alert != "undefined") { %>
+                    <script>
+                        Swal.fire({
+                        title: '<%= alertTitle %>',
+                        text:'<%= alertMessage %>',
+                        icon: '<%= alertIcon %>',
+                        showConfirmButton:<%= showConfirmButton %>,
+                        timer:<%= timer %>
+                        }).then(()=>{
+                            window.history.go(-1)
+                        })
+                    </script>
+                <% }; %>
+                <% } %>   
         <% } %>
 </body>
 </html>

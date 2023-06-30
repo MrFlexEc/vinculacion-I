@@ -52,57 +52,115 @@ const InsertRegistro = async (req, res) =>{
         const preciopublicoRegistro = req.body.preciopublicoRegistro;
         const precioalmayorRegistro = req.body.precioalmayorRegistro;
         const preciofrecuenteRegistro = req.body.preciofrecuenteRegistro;
-        const cantidadRegistro = req.body.cantidadRegistro;
-        const cantidadMaximaRegistro = req.body.cantidadMaximaRegistro;
-        const cantidadMinimaRegistro = req.body.cantidadMinimaRegistro;
-        //console.log(marcaRegistro)
-        //console.log(proveedorRegistro)
-        //console.log(categoriaRegistro)
+        const cantidadRegistro = parseInt(req.body.cantidadRegistro)    ;
+        const cantidadMaximaRegistro = parseInt(req.body.cantidadMaximaRegistro);
+        const cantidadMinimaRegistro = parseInt(req.body.cantidadMinimaRegistro) ;
         const pool = await dbConnection.getConnection();
-        await pool.request().input('IDPROOVEDOR', sql.Int, proveedorRegistro)
-                            .input('IDUBICACION', sql.Int, ubicacionRegistro)
-                            .input('IDCATEGORIA', sql.Int, categoriaRegistro)
-                            .input('IDMARCA', sql.Int, marcaRegistro)
-                            .input('IDMEDIDA', sql.Int, medidaRegistro)
-                            .input('NOMBREREPUESTO', sql.VarChar(20), nombreRegistro)
-                            .input('CODIGOREPUESTO', sql.VarChar(10), codigoRegistro)
-                            .input('DESCRIPCIONREPUESTO', sql.VarChar(50), descripcionRegistro)
-                            .input('MODELOREPUESTO', sql.VarChar(30), modeloRegistro)
-                            .input('MINCANREPUESTO', sql.SmallInt, cantidadMinimaRegistro)
-                            .input('MAXCANREPUESTO', sql.SmallInt, cantidadMaximaRegistro)
-                            .input('CANTIDADREPUESTO', sql.SmallInt, cantidadRegistro)
-                            .input('OBSERVACIONREPUEST', sql.VarChar(50), observacionRegistro)
-                            .query('INSERT INTO REPUESTO VALUES (@IDPROOVEDOR,@IDUBICACION,@IDCATEGORIA,@IDMARCA,@IDMEDIDA,@NOMBREREPUESTO,@CODIGOREPUESTO,@DESCRIPCIONREPUESTO,@MODELOREPUESTO,@MINCANREPUESTO,@MAXCANREPUESTO,@CANTIDADREPUESTO,@OBSERVACIONREPUEST,GETDATE())')
+        console.log(cantidadRegistro),
+        console.log(cantidadMaximaRegistro),
+        console.log(cantidadMinimaRegistro),
+        console.log("-----------")
 
-        const resultPrecio = await pool.request()
-                            .input('CODIGOREPUESTO', sql.VarChar(10), codigoRegistro)
-                            .query("SELECT * FROM REPUESTO WHERE CODIGOREPUESTO = @CODIGOREPUESTO")
-                            if(codigoRegistro==resultPrecio.recordset[0].CODIGOREPUESTO){
-                                const id_repuesto = resultPrecio.recordset[0].IDRESPUESTO
-                                const id_usuario = req.session.idUsuario
-                                await pool.request().input('IDRESPUESTO', sql.Int, id_repuesto)
-                                                    .input('PUBLICOPRECIO', sql.Int, preciopublicoRegistro)
-                                                    .input('FRECUENTEPRECIO', sql.Int, preciofrecuenteRegistro)
-                                                    .input('ALMAYORPRECIO', sql.Int, precioalmayorRegistro)
-                                                    .query('INSERT INTO PRECIO VALUES (@IDRESPUESTO,@PUBLICOPRECIO,@FRECUENTEPRECIO,@ALMAYORPRECIO)')
-                           
-                                await pool.request().input('IDUSUARIO', sql.Int, id_usuario)
-                                                    .input('IDRESPUESTO', sql.Int, id_repuesto)
-                                                    .query('INSERT INTO USUARIO_REPUESTO VALUES (@IDUSUARIO,@IDRESPUESTO)')
-                            }                       
-                               
+        if(codigoRegistro && nombreRegistro && descripcionRegistro && ubicacionRegistro
+            &&marcaRegistro&&categoriaRegistro &&proveedorRegistro&& medidaRegistro
+            &&modeloRegistro && observacionRegistro && preciopublicoRegistro && precioalmayorRegistro
+            && preciofrecuenteRegistro && cantidadRegistro && cantidadMaximaRegistro && cantidadMinimaRegistro ){
+            //validad cantidad
+            if(cantidadRegistro>cantidadMaximaRegistro){
+                console.log(cantidadRegistro),
+                console.log(cantidadMaximaRegistro),
+                console.log(cantidadMinimaRegistro),
+                res.render('./CrearRegistroPage/views/Crear_registro',{
+                    bienRegi:false,
+                    login:false,
+                    alert:true,
+                    alertTitle:"ERROR",
+                    alertMessage: "La cantidad no puede ser mayor a la cantidad Máxima",
+                    alertIcon:'error',
+                    showConfirmButton:true,
+                    timer:false,
+                })
+            }
+            if(cantidadRegistro<cantidadMinimaRegistro){
+                console.log(cantidadRegistro),
+                console.log(cantidadMinimaRegistro),
+                res.render('./CrearRegistroPage/views/Crear_registro',{
+                    bienRegi:false,
+                    login:false,
+                    alert:true,
+                    alertTitle:"ERROR",
+                    alertMessage: "La cantidad no puede ser menor a la cantidad Mínima",
+                    alertIcon:'error',
+                    showConfirmButton:true,
+                    timer:false,
+                })
+            }
+            if(cantidadRegistro<=cantidadMaximaRegistro && cantidadRegistro>=cantidadMinimaRegistro){
+                await pool.request().input('IDPROOVEDOR', sql.Int, proveedorRegistro)
+                .input('IDUBICACION', sql.Int, ubicacionRegistro)
+                .input('IDCATEGORIA', sql.Int, categoriaRegistro)
+                .input('IDMARCA', sql.Int, marcaRegistro)
+                .input('IDMEDIDA', sql.Int, medidaRegistro)
+                .input('NOMBREREPUESTO', sql.VarChar(20), nombreRegistro)
+                .input('CODIGOREPUESTO', sql.VarChar(10), codigoRegistro)
+                .input('DESCRIPCIONREPUESTO', sql.VarChar(50), descripcionRegistro)
+                .input('MODELOREPUESTO', sql.VarChar(30), modeloRegistro)
+                .input('MINCANREPUESTO', sql.SmallInt, cantidadMinimaRegistro)
+                .input('MAXCANREPUESTO', sql.SmallInt, cantidadMaximaRegistro)
+                .input('CANTIDADREPUESTO', sql.SmallInt, cantidadRegistro)
+                .input('OBSERVACIONREPUEST', sql.VarChar(50), observacionRegistro)
+                .query('INSERT INTO REPUESTO VALUES (@IDPROOVEDOR,@IDUBICACION,@IDCATEGORIA,@IDMARCA,@IDMEDIDA,@NOMBREREPUESTO,@CODIGOREPUESTO,@DESCRIPCIONREPUESTO,@MODELOREPUESTO,@MINCANREPUESTO,@MAXCANREPUESTO,@CANTIDADREPUESTO,@OBSERVACIONREPUEST,GETDATE())')
 
-                            res.render('./CrearRegistroPage/views/Crear_registro',{
-                                login:false,
-                                alert:true,
-                                alertTitle:"EXITOSO",
-                                alertMessage: "Repuesto ingresado correctamente",
-                                alertIcon:'success',
-                                showConfirmButton:true,
-                                timer:false,
-                                ruta:'crearRegistro',
-                               
-                              })
+                const resultPrecio = await pool.request()
+                                .input('CODIGOREPUESTO', sql.VarChar(10), codigoRegistro)
+                                .query("SELECT * FROM REPUESTO WHERE CODIGOREPUESTO = @CODIGOREPUESTO")
+                                if(codigoRegistro==resultPrecio.recordset[0].CODIGOREPUESTO){
+                                    const id_repuesto = resultPrecio.recordset[0].IDRESPUESTO
+                                    const id_usuario = req.session.idUsuario
+                                    await pool.request().input('IDRESPUESTO', sql.Int, id_repuesto)
+                                                        .input('PUBLICOPRECIO', sql.Int, preciopublicoRegistro)
+                                                        .input('FRECUENTEPRECIO', sql.Int, preciofrecuenteRegistro)
+                                                        .input('ALMAYORPRECIO', sql.Int, precioalmayorRegistro)
+                                                        .query('INSERT INTO PRECIO VALUES (@IDRESPUESTO,@PUBLICOPRECIO,@FRECUENTEPRECIO,@ALMAYORPRECIO)')
+                            
+                                    await pool.request().input('IDUSUARIO', sql.Int, id_usuario)
+                                                        .input('IDRESPUESTO', sql.Int, id_repuesto)
+                                                        .query('INSERT INTO USUARIO_REPUESTO VALUES (@IDUSUARIO,@IDRESPUESTO)')
+                                }                                                   
+                                res.render('./CrearRegistroPage/views/Crear_registro',{
+                                    bienRegi:true,
+                                    login:false,
+                                    alert:true,
+                                    alertTitle:"EXITOSO",
+                                    alertMessage: "Repuesto ingresado correctamente",
+                                    alertIcon:'success',
+                                    showConfirmButton:true,
+                                    timer:false,
+                                    ruta:'crearRegistro',
+                                })
+            }
+            
+
+        }else{
+
+            res.render('./CrearRegistroPage/views/Crear_registro',{
+                bienRegi:false,
+                login:false,
+                alert:true,
+                alertTitle:"ERROR",
+                alertMessage: "Por favor ingrese todos los datos",
+                alertIcon:'error',
+                showConfirmButton:true,
+                timer:false,
+               
+              })
+
+        }
+
+        
+
+        
+        
                        
         
     } catch (error) {
