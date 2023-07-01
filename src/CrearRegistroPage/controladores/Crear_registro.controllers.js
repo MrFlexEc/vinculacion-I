@@ -17,7 +17,7 @@ const authPageCrearRegistro = async (req, res) =>{
             login:true,
             name:req.session.name,
             rol:req.session.rol,
-            Marca:resultmarca.recordset ,
+            Marca:resultmarca.recordset,
             Categoria:resultcategoria.recordset,
             Proveedor:resultproveedor.recordset,
             Medida:resultmedida.recordset,

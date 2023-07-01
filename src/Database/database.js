@@ -6,19 +6,20 @@ const sql = require("mssql")
 const dbSettings = {
 
 
-    /*
+    
     user:'Vincu',
     password:'Vincu2023',
     server:'localhost',
-    database:"Vinculaciondb2",
+    database:"Vinculaciondb3",
     port:1433,
-    */
+    
+   /*
     user:'pruebaNode',
     password:'jajasalu2',
     server:'localhost',
     database:"Vinculacion2",
     port:1433,
-    
+    */
     options:{
         encrypt: true,
         trustServerCertificate: true,

@@ -17,7 +17,7 @@
 </head>
 <body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
          
-
+    <% if (login){ %>
     <!-- Aqui ya te la sabes --> 
 
    <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
@@ -42,6 +42,7 @@
               </script>
         </div>
     </nav>
+    <% if (RERE) { %>
     
     <form action="/insertarRegistro" method="POST">
          <!-- Estructura  --> 
@@ -56,17 +57,17 @@
                                     <!-- inputs--> 
                                     Código
                                         <div class="opacity-75">
-                                            <input type="text" name="codigoRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="codigoRegistro2" value="<%= RERE.CODIGOREPUESTO  %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Nombre
                                         <div class="opacity-75">
-                                            <input type="text" name="nombreRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="nombreRegistro2" value="<%= RERE.NOMBREREPUESTO  %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Descripción
                                         <div class="opacity-75">
-                                            <input type="text" name="descripcionRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="descripcionRegistro" value="<%= RERE.DESCRIPCIONREPUESTO  %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
                                 </div>
         
@@ -76,10 +77,12 @@
                                 <div class="justify-content-start  fs-5" style="color: #385277;  "> 
                                         Marca  
                                     <div class="btn-group form-control " style="border:none ;background-color: #C2D7DB;">
-                                        <select name="marcaRegistro" class=" btn border-2  seleccionar dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
-                                             
-
-
+                                        <select name="marcaRegistro2" class=" btn border-2  seleccionar dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
+                                            <% Marca2?.forEach((marca2) =>{ %>  
+                                                <% id_marca= marca2.IDMARCA %>
+                                                <% nombre_marca= marca2.NOMBREMARCA %> 
+                                            <option <%= RERE.NOMBREMARCA==nombre_marca ? "select" : '' %> value="<%= id_marca %>"  style="color: #707070;"><%= nombre_marca %></option>
+                                            <% }); %>   
                                         </select>
                                         <script>
                                             $(document).ready(function() {
@@ -139,7 +142,7 @@
                                 <div class="justify-content-start fs-5 " style="color: #385277;">
                                     Modelo
                                     <div class="opacity-75">
-                                        <input name="modeloRegistro" type="text" class=" form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input name="modeloRegistro2" value="<%= RERE.MODELOREPUESTO%>" type="text" class=" form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
                                 </div>
 
@@ -155,7 +158,7 @@
                                 <div class=" " style="color: #385277; ">
                                     <div class="opacity-75">
                                         <div class="form-floating rounded-4 border-2">
-                                            <textarea name="observacionRegistro" style="font-size: small; background-color: #99B3D8; color: black; border-color: #385277; " class="form-control"  id="floatingTextarea"></textarea>
+                                            <textarea name="observacionRegistro2" style="font-size: small; background-color: #99B3D8; color: black; border-color: #385277; " class="form-control"  id="floatingTextarea"><%= RERE.OBSERVACIONREPUEST  %></textarea>
                                             <label for="floatingTextarea" style="color:  #385277;  ">Observación</label>
                                         </div>
                                          
@@ -207,15 +210,15 @@
                         <!-- input de precios --> 
                         <div class="opacity-75"> 
                             <!-- input de precios publico--> 
-                            <input name="preciopublicoRegistro" type="text" placeholder="Publico" class=" form-control rounded-3 border-2" 
+                            <input name="preciopublicoRegistro"  value="<%= RERE.PUBLICOPRECIO  %>" type="text" placeholder="Publico" class=" form-control rounded-3 border-2" 
                             style="background-color: #A4B3C8; color: black; border-color: #00264b;" >
                                 
                             <!-- input de precios mayor--> 
-                            <input name="precioalmayorRegistro" type="text" placeholder="Mayor"  class=" form-control rounded-3 border-2" 
+                            <input name="precioalmayorRegistro"  value="<%= RERE.ALMAYORPRECIO  %>" type="text" placeholder="Mayor"  class=" form-control rounded-3 border-2" 
                             style="background-color: #A4B3C8; color: black; border-color: #00264b; " >
                                 
                             <!-- input de precios Frecuente--> 
-                            <input name="preciofrecuenteRegistro" type="text" placeholder="Frecuente"  class=" form-control rounded-3 border-2" 
+                            <input name="preciofrecuenteRegistro"  value="<%= RERE.FRECUENTEPRECIO  %>" type="text" placeholder="Frecuente"  class=" form-control rounded-3 border-2" 
                             style="background-color: #A4B3C8; color: black; border-color: #00264b;" >
                         </div> 
                     </div>
@@ -225,17 +228,17 @@
                     Cantidad 
                     <!-- input de cantidad --> 
                     <div class="opacity-75">
-                        <input name="cantidadRegistro"   type="text" class=" form-control rounded-4 border-2" 
+                        <input name="cantidadRegistro2"  value="<%= RERE.CANTIDADREPUESTO  %>"   type="text" class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                     
             
                         <!-- input de cantidad maxima -->  
-                        <input name="cantidadMaximaRegistro" type="text" placeholder="Max"  class=" form-control rounded-4 border-2" 
+                        <input name="cantidadMaximaRegistro2"  value="<%= RERE.MAXCANREPUESTO  %>"  type="text" placeholder="Max"  class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                     
             
                         <!-- input de cantidad minima -->  
-                        <input name="cantidadMinimaRegistro"  type="text" placeholder="Min" class=" form-control rounded-4 border-2" 
+                        <input name="cantidadMinimaRegistro2" value="<%= RERE.MINCANREPUESTO  %>"  type="text" placeholder="Min" class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                                                     
                     </div>
@@ -251,6 +254,26 @@
         
     </div>
 </form>  
+<% } %>
+
+<% } else { %>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+    <% if (typeof alert != "undefined") { %>
+        <script>
+            Swal.fire({
+            title: '<%= alertTitle %>',
+            text:'<%= alertMessage %>',
+            icon: '<%= alertIcon %>',
+            showConfirmButton:<%= showConfirmButton %>,
+            timer:<%= timer %>
+            }).then(()=>{
+                window.location='./<%= ruta %>'
+            })
+        </script>
+    <% }; %>
+    <% } %>
     <!-- SIMPLEMENTE ICONO PARA HOME -->  
     <footer class="p-3  z-3 " style="background-color:#385277 ; margin-top: auto;  ">
             <a href="/home">
