@@ -5,12 +5,10 @@ const sql = require("mssql")
 //datos para la conexion
 const dbSettings = {
 
-
-    
-    user:'Vincu',
-    password:'Vincu2023',
+    user:'pruebaNode',
+    password:'jajasalu2',
     server:'localhost',
-    database:"Vinculaciondb2",
+    database:"ejemplo",
     port:1433,
     
    /*
