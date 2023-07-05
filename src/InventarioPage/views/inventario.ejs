@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Egreso</title>
      <!-- LIBRERIAS Y SCRIPT QUE SERAN USADOS PARA COMBO BOX Y POST --> 
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -26,7 +26,7 @@
    
     <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
         <div class="container-fluid d-flex justify-content-start">
-            <div class="p-2"> VER REGISTROS </div>
+            <div class="p-2"> PROCESO DE EGRESO </div>
         </div>
     </nav>
 
@@ -37,7 +37,6 @@
     <!--  Datatables Responsive  -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
    
-    <title>Document</title>
 </head>
     
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -106,7 +105,7 @@
         
         <div class="col-sm-5 col-md-4 col-lg-4 col-xl-4 col-xxl-4 pt-5 justify-content-start fs-4 " style="color: #385277;    border-left-color: red;">
             <div class="container   ">
-                <div style="font-size: 4rem;">Egreso</div>
+                <div style="font-size: 4rem;">Ingreso</div>
                 Código
                 <div class="opacity-75">
                     <input type="text" name="egresoCodigo" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
@@ -123,7 +122,7 @@
             <div class="container  mt-4">
 
                 <div class="col-ms-6 col-md-12 col-lg-12 col-xl-12 col-xl-12 pt-2  ">
-                    <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #81C79F; border-color: #707070;" >AÑADIR</button>
+                    <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #81C79F; border-color: #707070;" >ACEPTAR</button>
 
                 </div>
             </div>
@@ -139,7 +138,6 @@
     
         $(document).ready(function(){
             var table =$("#registros").DataTable({
-                responsive: true,
                 "language":{
                     "processing": "Procesando...",
                     "lengthMenu": "Mostrar _MENU_ registros",

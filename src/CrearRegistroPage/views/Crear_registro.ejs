@@ -190,7 +190,7 @@
                             </div>
 
                                 <!-- textarea donde estara todo el contenido observacion--> 
-                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 p-6">
+                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 p-6 ">
                                 <div class="py-4" style="color: #385277; ">
                                     <div class="opacity-75">
                                         <div class="form-floating rounded-4 border-2">
@@ -202,26 +202,8 @@
                                 </div>
                             </div>
 
-                            <!-- nput de ubicacion --> 
-                            
-                            
-                            <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 ">
-            
-                                <div class="justify-content-start  fs-5" style="color: #385277;"> 
-                                      Ubicacion
-                                    <select  name="ubicacionRegistro" class=" btn border-2   dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
-                                        <option disabled selected>Seleccione..</option>
-
-                                        <% Ubicacion?.forEach((ubicacion) =>{ %>  
-                                            <% id_ubicacion= ubicacion.IDUBICACION %>
-                                            <% nombre_ubicacion= ubicacion.PERCHAUBICACION %>  
-                                        <option value="<%= id_ubicacion%>" style="color: #707070;"><%= nombre_ubicacion%></option>
-                                        <% }); %>
-
-                                    </select>
-                                    
-                            </div>
-                            </div>
+                            <!-- input de espaciado --> 
+                            <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 ">     </div>
                             <div class="col-sm-6 col-md-1 col-lg-1 col-xl-1 pt-1"></div><!-- espaciado ocupando el sobrante de 1 columna total 12 --> 
                                
                             <!-- botones de guardar y cancelar, cancelar puede ser para borrar los datos de input-->     
@@ -259,12 +241,11 @@
                     </div>
                 </div>
 
-                <div class="justify-content-start fs-5 mt-4" style="color: #385277;">
+                <div class="justify-content-start fs-5 mt-4 " style="color: #385277;">
                     Cantidad 
                     <!-- input de cantidad --> 
                     <div class="opacity-75">
-                        <input name="cantidadRegistro"   type="number" class=" form-control rounded-4 border-2" 
-                        style="background-color: #99B3D8; color: black; border-color: #00264b;" >
+                         
                     
             
                         <!-- input de cantidad maxima -->  

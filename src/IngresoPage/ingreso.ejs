@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Registros</title>
+    <title>Egreso</title>
      <!-- LIBRERIAS Y SCRIPT QUE SERAN USADOS PARA COMBO BOX Y POST --> 
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -19,16 +19,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>  
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
      <!-- USAR ICONO --> 
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
-
     <% if (login){ %>
-
-
-   <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
+   
+    <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
         <div class="container-fluid d-flex justify-content-start">
-            <div class="p-2"> VER REGISTROS </div>
+            <div class="p-2"> PROCESO DE EGRESO </div>
         </div>
     </nav>
 
@@ -39,7 +37,6 @@
     <!--  Datatables Responsive  -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
    
-    <title>Document</title>
 </head>
     
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -49,54 +46,43 @@
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
 <div class="p-3">
+    <form action="/Egresoinventario" method="POST">
     <div class="row  m-1 ">
-        <div style=" color: #385277;">
-            <a href="crearRegistro"><img src="https://i.ibb.co/LYWsx61/mas.png" class="rounded-circle " style="height: 3rem; background-color: #99B3D8;"></a><strong><label style="color: #385277; font-size: 23px;">Nuevo Registro</label></strong>
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-            <table class="text-center table" id="registros" class="table "  > 
-                <thead class="table-dark" style="color: #a3c1d5;">
+        <div class="col-sm-6 col-md-7 col-lg-7 col-xl-7 col-xxl-7  me-4 ">
+            <table class="text-center table " id="registros"  > 
+                <thead class="table-dark " style="color: #a3c1d5;">
                     <tr>
+                        <th>Ver</th>
                         <th>Codigo</th>
                         <th>Nombre</th>
                         <th>Marca</th>
                         <th>Categoria</th>
-                        <th>Proveedor</th>
-                        <th>Fecha</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
-                        <th>Acciones</th>
                     </tr>
 
                 </thead>    
                 <tbody>
-                    <% resultadoVR?.forEach((VR) =>{ %>  
-                        <% IDRESPUESTO=VR.IDRESPUESTO %>
-                        <% CODIGO=VR.CODIGOREPUESTO %>
-                        <% NOMBRE=VR.NOMBREREPUESTO %>
-                        <% MARCA=VR.NOMBREMARCA %>
-                        <% CATEGORIA=VR.NOMBRECATEGORIA %>
-                        <% PROVEEDOR=VR.NOMBREPROOVEDOR %>
-                        <% FECHA=VR.FECHAREPUESTO.toLocaleDateString() %>
-                        <% FECHA2=VR.FECHAREPUESTO.toLocaleTimeString() %>
-                        <% CANTIDAD=VR.CANTIDADREPUESTO %>
-                        <% PRECIO=VR.PUBLICOPRECIO %>
+                    <% resultadoInven?.forEach((INVEN) =>{ %>  
+                        <% CODIGO=INVEN.CODIGOREPUESTO %>
+                        <% NOMBRE=INVEN.NOMBREREPUESTO %>
+                        <% MARCA=INVEN.NOMBREMARCA %>
+                        <% CATEGORIA=INVEN.NOMBRECATEGORIA %>
+                        <% CANTIDAD=INVEN.CANTIDADREPUESTO %>
+                        <% PRECIO=INVEN.PUBLICOPRECIO %>
                     <tr>
+                        <th>
+                            <a href="" class="btn btn-outline-info"><i class='bx bx-show'></i></a>
+                        </th>
                         <th><%= CODIGO %></th>
                         <th><%= NOMBRE %></th>
                         <th><%= MARCA %></th>
                         <th><%= CATEGORIA %></th>
-                        <th><%= PROVEEDOR %></th>
-                        <th><%= FECHA %> <%= FECHA2 %></th>
                         <th><%= CANTIDAD %></th>
                         <th>$<%= PRECIO %></th>
-                        <th>
-                            <a href="/modificar-registro/<%= IDRESPUESTO %>" class="btn btn-outline-info"><i class='bx bx-edit-alt'></i></a>
-                            <a onclick="ConfirmarEliminacion(<%= IDRESPUESTO %>)"  class="btn btn-outline-danger"><i class='bx bx-trash'></i></a>
-
-                        </th>
 
                     </tr>
+                    
                     <% }); %>
                 </tbody>
                 <tfoot>
@@ -107,9 +93,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+
  
                     </tr>
                 </tfoot>
@@ -117,7 +101,39 @@
             </table>
          
         </div>
+
+        
+        <div class="col-sm-5 col-md-4 col-lg-4 col-xl-4 col-xxl-4 pt-5 justify-content-start fs-4 " style="color: #385277;    border-left-color: red;">
+            <div class="container   ">
+                <div style="font-size: 4rem;">Egreso</div>
+                Código
+                <div class="opacity-75">
+                    <input type="text" name="egresoCodigo" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                </div>
+                
+            </div>
+            <div class="container  ">
+                Cantidad
+                <div class="opacity-75">
+                    <input type="text" name="egresoCantidad" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                </div>
+                
+            </div>
+            <div class="container  mt-4">
+
+                <div class="col-ms-6 col-md-12 col-lg-12 col-xl-12 col-xl-12 pt-2  ">
+                    <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #D64C6D; border-color: white;" >ACEPTAR</button>
+
+                </div>
+            </div>
+
+            
+            
+
+        </div>
+        
     </div>
+    </form>
         <script>
     
         $(document).ready(function(){
@@ -307,47 +323,12 @@
       
         
         </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            
-            function ConfirmarEliminacion(id){
-                Swal.fire({
-                title: '¿Confirmar eliminar el registro: ?',
-                icon:'warning',
-                showCancelButton: true,
-                confirmButtonColor:'#3085d6',
-                cancelButtonColor:'#d33',
-                confirmButtonText: 'Confirmar',
-                cancelButtonText: 'Denegar',
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = '/borrarRegistro/'+id;
-                } 
-                })
-            }      
-        </script>
+    
+
 
 
 
 </div> <!-- SIMPLEMENTE ICONO PARA HOME -->  
-<% } else { %>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
-    <% if (typeof alert != "undefined") { %>
-        <script>
-            Swal.fire({
-            title: '<%= alertTitle %>',
-            text:'<%= alertMessage %>',
-            icon: '<%= alertIcon %>',
-            showConfirmButton:<%= showConfirmButton %>,
-            timer:<%= timer %>
-            }).then(()=>{
-                window.location='./<%= ruta %>'
-            })
-        </script>
-    <% }; %>
-    <% } %>
     <footer class="p-3  z-3 " style="background-color:#385277 ; margin-top: auto;  ">
             <a href="/home">
             <label style="color: white;">HOME</label><img src="https://i.ibb.co/QF1WGmT/casa-1.png" style="height: 2rem; ">
@@ -356,5 +337,21 @@
     <!-- algunos scripts que seran necesarios para combo box  -->  
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <% } else { %>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <% if (typeof alert != "undefined") { %>
+            <script>
+                Swal.fire({
+                title: '<%= alertTitle %>',
+                text:'<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton:<%= showConfirmButton %>,
+                timer:<%= timer %>
+                }).then(()=>{
+                    window.location='./<%= ruta %>'
+                })
+            </script>
+        <% }; %>
+        <% } %>
 </body>
 </html>

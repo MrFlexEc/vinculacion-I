@@ -43,6 +43,8 @@ app.use(require('./VerProveedorPage/rutas/ver_proveedor.router'));
 app.use(require('./ModificarRegistroPage/rutas/modificar_registro.router'))
 app.use(require('./ModificarProveedorPage/rutas/modificar_proveedor.router'))
 app.use(require('./InventarioPage/rutas/inventario.router'))
+app.use(require('./DataVerPage/rutas/DataVer.router'))
+
 //invocar metodos express este caso para levantar el servidor
 app.listen(app.get('port'), ()=>{
     console.log("Servidor levantado http://localhost:2000/login");

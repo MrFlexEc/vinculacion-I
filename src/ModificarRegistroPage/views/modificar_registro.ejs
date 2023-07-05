@@ -148,8 +148,8 @@
                                 <div class="justify-content-start  fs-5" style="color: #385277;"> 
                                         Medida  
                                         <select name="medidaRegistro" class=" btn border-2  seleccionar dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
-   
 
+                                            <option  disabled selected>Seleccione </option>
                                         </select>
                                        
                                 </div>
@@ -182,16 +182,6 @@
                             
                             
                             <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 ">
-            
-                                <div class="justify-content-start  fs-5" style="color: #385277;"> 
-                                      Ubicacion
-                                    <select name="ubicacionRegistro" class=" btn border-2  seleccionar dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
-                                        <option disabled selected>Seleccione Nuevo..</option>
-
-
-                                    </select>
-                                 
-                            </div>
                             </div>
                             <div class="col-sm-6 col-md-1 col-lg-1 col-xl-1 pt-1"></div><!-- espaciado ocupando el sobrante de 1 columna total 12 --> 
                                
@@ -201,10 +191,10 @@
 
                             </div>
                             <div class="col-6-12 col-md-3 col-lg-3 col-xl-3 pt-2 "> 
-                                    <button type="button" class="btn rounded-5 border-3 form-control pt-4 pb-4" style=" background-color: #C7D258; color:white; border-color: #707070;" ><a href="home" ><FONT COLOR="white" >CANCELAR</FONT></a></button>
+                                    <button type="button" class="btn rounded-5 border-3 form-control pt-4 pb-4" style=" background-color: #C7D258; color:white; border-color: #707070;" ><a href="home" ><FONT COLOR="dark" >CANCELAR</FONT></a></button>
                             </div> 
                             <div class="col-6- col-md-3 col-lg-3 col-xl-3 pt-2  pt-2">
-                                <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #D64C6D; border-color: #707070;" ><FONT COLOR="white">ELIMINARR</FONT></button>
+                                <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #D64C6D; border-color: #707070;" ><FONT COLOR="white">ELIMINAR</FONT></button>
                             </div>
                         </div>
                     </div>
@@ -237,8 +227,7 @@
                     Cantidad 
                     <!-- input de cantidad --> 
                     <div class="opacity-75">
-                        <input name="cantidadRegistro2"  value="<%= RERE.CANTIDADREPUESTO  %>"   type="text" class=" form-control rounded-4 border-2" 
-                        style="background-color: #99B3D8; color: black; border-color: #00264b;" >
+                        
                     
             
                         <!-- input de cantidad maxima -->  
