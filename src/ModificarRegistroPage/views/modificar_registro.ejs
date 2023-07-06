@@ -113,7 +113,8 @@
                                             <% Marca2?.forEach((marca2) =>{ %>  
                                                 <% id_marca= marca2.IDMARCA %>
                                                 <% nombre_marca= marca2.NOMBREMARCA %> 
-                                            <option <%= RERE.NOMBREMARCA==nombre_marca ? "select" : '' %> value="<%= id_marca %>"  style="color: #707070;"><%= nombre_marca %></option>
+                                          <!-- <option <%= RERE.NOMBREMARCA==nombre_marca ? "select" : '' %> value="<%= id_marca %>"  style="color: #707070;"><%= nombre_marca %></option> --> 
+                                            <option value="<%= id_marca %>"  style="color: #707070;"<%= nombre_marca === RERE.NOMBREMARCA ? 'selected' : '' %>><%= nombre_marca %></option>
                                             <% }); %>   
                                         </select>
                                     </div>

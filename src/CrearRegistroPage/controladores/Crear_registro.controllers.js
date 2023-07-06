@@ -11,7 +11,6 @@ const authPageCrearRegistro = async (req, res) =>{
         const resultcategoria = await pool.request().query('SELECT * FROM CATEGORIA')
         const resultproveedor = await pool.request().query('SELECT * FROM PROVEEDOR')
         const resultmedida = await pool.request().query('SELECT * FROM MEDIDA')
-        const resultubicacion = await pool.request().query('SELECT * FROM UBICACION')
 
         res.render('./CrearRegistroPage/views/Crear_registro',{
             login:true,
@@ -21,7 +20,6 @@ const authPageCrearRegistro = async (req, res) =>{
             Categoria:resultcategoria.recordset,
             Proveedor:resultproveedor.recordset,
             Medida:resultmedida.recordset,
-            Ubicacion:resultubicacion.recordset
         });
     }else{
         res.render('./LoginPage/views/Login',{
@@ -42,7 +40,6 @@ const InsertRegistro = async (req, res) =>{
         const codigoRegistro = req.body.codigoRegistro;
         const nombreRegistro = req.body.nombreRegistro;
         const descripcionRegistro = req.body.descripcionRegistro;
-        const ubicacionRegistro = req.body.ubicacionRegistro;
         const marcaRegistro = req.body.marcaRegistro;
         const categoriaRegistro = req.body.categoriaRegistro;
         const proveedorRegistro = req.body.proveedorRegistro;
@@ -52,52 +49,41 @@ const InsertRegistro = async (req, res) =>{
         const preciopublicoRegistro = req.body.preciopublicoRegistro;
         const precioalmayorRegistro = req.body.precioalmayorRegistro;
         const preciofrecuenteRegistro = req.body.preciofrecuenteRegistro;
-        const cantidadRegistro = parseInt(req.body.cantidadRegistro)    ;
         const cantidadMaximaRegistro = parseInt(req.body.cantidadMaximaRegistro);
         const cantidadMinimaRegistro = parseInt(req.body.cantidadMinimaRegistro) ;
         const pool = await dbConnection.getConnection();
-        console.log(cantidadRegistro),
-        console.log(cantidadMaximaRegistro),
-        console.log(cantidadMinimaRegistro),
-        console.log("-----------")
-
-        if(codigoRegistro && nombreRegistro && descripcionRegistro && ubicacionRegistro
+        
+        if(codigoRegistro && nombreRegistro && descripcionRegistro 
             &&marcaRegistro&&categoriaRegistro &&proveedorRegistro&& medidaRegistro
             &&modeloRegistro && observacionRegistro && preciopublicoRegistro && precioalmayorRegistro
-            && preciofrecuenteRegistro && cantidadRegistro && cantidadMaximaRegistro && cantidadMinimaRegistro ){
+            && preciofrecuenteRegistro && cantidadMaximaRegistro && cantidadMinimaRegistro ){
             //validad cantidad
-            if(cantidadRegistro>cantidadMaximaRegistro){
-                console.log(cantidadRegistro),
-                console.log(cantidadMaximaRegistro),
-                console.log(cantidadMinimaRegistro),
+            if(cantidadMinimaRegistro>cantidadMaximaRegistro){
                 res.render('./CrearRegistroPage/views/Crear_registro',{
                     bienRegi:false,
                     login:false,
                     alert:true,
                     alertTitle:"ERROR",
-                    alertMessage: "La cantidad no puede ser mayor a la cantidad Máxima",
+                    alertMessage: "La cantidad miníma no puede ser mayor a la cantidad Máxima",
                     alertIcon:'error',
                     showConfirmButton:true,
                     timer:false,
                 })
             }
-            if(cantidadRegistro<cantidadMinimaRegistro){
-                console.log(cantidadRegistro),
-                console.log(cantidadMinimaRegistro),
+            if(cantidadMaximaRegistro<cantidadMinimaRegistro){
                 res.render('./CrearRegistroPage/views/Crear_registro',{
                     bienRegi:false,
                     login:false,
                     alert:true,
                     alertTitle:"ERROR",
-                    alertMessage: "La cantidad no puede ser menor a la cantidad Mínima",
+                    alertMessage: "La cantidad máxima no puede ser menor a la cantidad Mínima",
                     alertIcon:'error',
                     showConfirmButton:true,
                     timer:false,
                 })
             }
-            if(cantidadRegistro<=cantidadMaximaRegistro && cantidadRegistro>=cantidadMinimaRegistro){
+            if(cantidadMinimaRegistro<cantidadMaximaRegistro && cantidadMaximaRegistro>=cantidadMinimaRegistro){
                 await pool.request().input('IDPROOVEDOR', sql.Int, proveedorRegistro)
-                .input('IDUBICACION', sql.Int, ubicacionRegistro)
                 .input('IDCATEGORIA', sql.Int, categoriaRegistro)
                 .input('IDMARCA', sql.Int, marcaRegistro)
                 .input('IDMEDIDA', sql.Int, medidaRegistro)
@@ -107,9 +93,8 @@ const InsertRegistro = async (req, res) =>{
                 .input('MODELOREPUESTO', sql.VarChar(30), modeloRegistro)
                 .input('MINCANREPUESTO', sql.SmallInt, cantidadMinimaRegistro)
                 .input('MAXCANREPUESTO', sql.SmallInt, cantidadMaximaRegistro)
-                .input('CANTIDADREPUESTO', sql.SmallInt, cantidadRegistro)
                 .input('OBSERVACIONREPUEST', sql.VarChar(50), observacionRegistro)
-                .query('INSERT INTO REPUESTO VALUES (@IDPROOVEDOR,@IDUBICACION,@IDCATEGORIA,@IDMARCA,@IDMEDIDA,@NOMBREREPUESTO,@CODIGOREPUESTO,@DESCRIPCIONREPUESTO,@MODELOREPUESTO,@MINCANREPUESTO,@MAXCANREPUESTO,@CANTIDADREPUESTO,@OBSERVACIONREPUEST,GETDATE())')
+                .query('INSERT INTO REPUESTO VALUES (@IDPROOVEDOR,@IDCATEGORIA,@IDMARCA,@IDMEDIDA,@NOMBREREPUESTO,@CODIGOREPUESTO,@DESCRIPCIONREPUESTO,@MODELOREPUESTO,@MINCANREPUESTO,@MAXCANREPUESTO,0,@OBSERVACIONREPUEST,GETDATE())')
 
                 const resultPrecio = await pool.request()
                                 .input('CODIGOREPUESTO', sql.VarChar(10), codigoRegistro)
