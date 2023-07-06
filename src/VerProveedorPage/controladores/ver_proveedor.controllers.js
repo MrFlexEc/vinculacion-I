@@ -24,9 +24,30 @@ const authPageVerProveedor = async (req, res) =>{
             ruta:'login'
         });
     }
-  //  res.render('./HomePage/views/Home')
+}
+
+
+
+//metodo eliminar
+const DeleteProveedor = async(req, res)=>{
+
+    try {
+        const idProveedor = req.params.id;
+        const pool = await dbConnection.getConnection();
+        await pool.request()
+        .input('IDPROOVEDOR', sql.Int, idProveedor)
+        .query("delete from Proveedor where IDPROOVEDOR=@IDPROOVEDOR")
+        res.redirect('/ver-proveedor'); 
+        
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        })   
+    }
+      
 }
 
 module.exports = {
-    authPageVerProveedor
+    authPageVerProveedor,
+    DeleteProveedor
 }

@@ -28,7 +28,7 @@ const authPageVerRegistros = async (req, res) =>{
 }
 
 
-//metodo eliminar
+//metodo eliminar Registro
 const DeleteRegistro = async(req, res)=>{
 
     try {

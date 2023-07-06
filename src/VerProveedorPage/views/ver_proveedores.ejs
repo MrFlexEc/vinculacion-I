@@ -27,7 +27,8 @@
             <div class="p-2"> VER PROVEEDORES </div>
         </div>
     </nav>
-
+    <!-- USAR ICONO --> 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
      <!--  Datatables  -->
@@ -59,12 +60,14 @@
                         <th>Correo</th>
                         <th>Fecha</th>
                         <th>Contacto</th>
+                        <th>Acciones</th>
                         
                     </tr>
 
                 </thead>    
                 <tbody>
                     <% resultadoVP?.forEach((VP) =>{ %>  
+                        <% IDPROOVEDOR=VP.IDPROOVEDOR %>
                         <% RUC=VP.RUCPROOVEDOR %>
                         <% NOMBRE=VP.NOMBREPROOVEDOR %>
                         <% EMPRESA=VP.EMPRESAPROOV %>
@@ -79,6 +82,11 @@
                         <th><%= CORREO %></th>
                         <th><%= FECHA %></th>
                         <th><%= CONTACTO %></th>
+                        <th>
+                            <a href="/modificar-proveedor/<%= IDPROOVEDOR %>" class="btn btn-outline-info"><i class='bx bx-edit-alt'></i></a>
+                            <a onclick="ConfirmarEliminacionProveedor(<%= IDPROOVEDOR %>)"  class="btn btn-outline-danger"><i class='bx bx-trash'></i></a>
+
+                        </th>
 
                     </tr>
                     <% }); %>
@@ -100,7 +108,6 @@
         </div>
     </div>
         <script>
-    
         $(document).ready(function(){
             var table =$("#registros").DataTable({
                 "language":{
@@ -285,9 +292,27 @@
             });
             
         });
-      
-        
         </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    
+    function ConfirmarEliminacionProveedor(id){
+        Swal.fire({
+        title: '¿Confirmar eliminar el proveedor?',
+        icon:'warning',
+        showCancelButton: true,
+        confirmButtonColor:'#3085d6',
+        cancelButtonColor:'#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Denegar',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = '/borrarProveedor/'+id;
+        } 
+        })
+    }      
+</script>
     
 
 

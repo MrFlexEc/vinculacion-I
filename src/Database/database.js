@@ -7,7 +7,8 @@ const dbSettings = {
     user:'Vincu',
     password:'Vincu2023',
     server:'localhost',
-    database:"Vinculaciondb2",
+    database:"Vinculacion2",
+   // database:"Vinculaciondb2",
     port:1433,
 
     /*

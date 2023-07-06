@@ -42,9 +42,9 @@
               </script>
         </div>
     </nav>
-    
+    <% if (proveedor) { %>
          <!-- Estructura  --> 
-    <form action="/insertarProveedor" method="POST">
+    <form action="/update-proveedor" method="POST">
         <div class="container ">
             <div class="row ">
                 <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-7 col-xs-7 p-2  ">
@@ -56,17 +56,17 @@
                                         <!-- inputs--> 
                                         Nompre - Apellido
                                         <div class="opacity-75">
-                                            <input type="text"  name="nombreProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text"  name="nombreProveedor" value="<%= proveedor.NOMBREPROOVEDOR %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Empresa
                                         <div class="opacity-75">
-                                            <input type="text" name="empresaProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="empresaProveedor" value="<%= proveedor.EMPRESAPROOV %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Correo
                                         <div class="opacity-75">
-                                            <input type="text" name="correoProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="correoProveedor" value="<%= proveedor.CORREOPROOV %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
                                     </div>
             
@@ -80,17 +80,17 @@
                                         <!-- inputs--> 
                                         Contacto
                                         <div class="opacity-75">
-                                            <input type="text" name="contactoProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="contactoProveedor" value="<%= proveedor.CONTACTOPROOVEDOR %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Ruc
                                         <div class="opacity-75">
-                                            <input type="text" name="rucProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="rucProveedor" value="<%= proveedor.RUCPROOVEDOR %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Dirección
                                         <div class="opacity-75">
-                                            <input type="text" name="direccionProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="direccionProveedor" value="<%= proveedor.DIRECCIONPROOV %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
                                     </div>
             
@@ -104,7 +104,7 @@
                                     <div class=" " style="color: #385277; ">
                                         <div class="opacity-75">
                                             <div class="form-floating rounded-4 border-2">
-                                                <textarea  style="font-size: small; background-color:  #99B3D8; color: black; border-color: #385277; " class="form-control" name="observacionProveedor"  id="floatingTextarea"></textarea>
+                                                <textarea  style="font-size: small; background-color:  #99B3D8; color: black; border-color: #385277; " class="form-control" name="observacionProveedor"  id="floatingTextarea"><%= proveedor.OBSERVACIONPROOV  %></textarea>
                                                 <label for="floatingTextarea" style="color:  #385277;  ">Adicional</label>
                                             </div>
                                             
@@ -123,7 +123,11 @@
                                         <button type="button" class="btn rounded-5 border-3 form-control pt-4 pb-4" style=" background-color: #C7D258; color:white; border-color: #707070;" ><a href="home"><FONT COLOR="black">CANCELAR</FONT></a></button>
                                 </div>
                                 <div class="col-ms-12 col-md-3 col-lg-3 col-xl-3 pt-2 "> 
-                                    <button type="button" class="btn rounded-5 border-3 form-control pt-4 pb-4" style=" background-color: #D64C6D; color:white; border-color: #707070;" ><a href="#"><FONT COLOR="black">ELIMINAR</FONT></a></button>
+                                    <button type="button" class="btn rounded-5 border-3 form-control pt-4 pb-4" style=" background-color: #D64C6D; color:white; border-color: #707070;" ><a href="/borrarProveedor/<%= proveedor.IDPROOVEDOR %>"><FONT COLOR="black">ELIMINAR</FONT></a></button>
+                            </div>
+
+                            <div class="opacity-75">
+                                <input type="text"  name="idproveedor" value="<%= proveedor.IDPROOVEDOR %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;" hidden>
                             </div>
                             </div>
                         </div>
@@ -133,9 +137,10 @@
         </div>
         <div class="p-2"></div>
     </form>
+    <% } %>
     <!-- SIMPLEMENTE ICONO PARA HOME -->  
     <footer class="p-3  z-3 " style="background-color:#385277 ; margin-top: auto;  ">
-        <a href="/VerRegistros">
+        <a href="/home">
             <label style="color: white;">VOLVER</label>
         </a>
 </footer>
