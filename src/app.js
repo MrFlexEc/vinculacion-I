@@ -44,6 +44,7 @@ app.use(require('./ModificarRegistroPage/rutas/modificar_registro.router'))
 app.use(require('./ModificarProveedorPage/rutas/modificar_proveedor.router'))
 app.use(require('./InventarioPage/rutas/inventario.router'))
 app.use(require('./DataVerPage/rutas/DataVer.router'))
+app.use(require('./UsuarioPage/rutas/Crear_usuarior.router'))
 
 //invocar metodos express este caso para levantar el servidor
 app.listen(app.get('port'), ()=>{

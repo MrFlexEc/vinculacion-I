@@ -46,7 +46,7 @@
         </div>
     </nav>
     
-    <form action="/insertarRegistro" method="POST">
+    <form action="/insertarUsuario" method="POST">
          <!-- Estructura  --> 
     <div class="container ">
         <div class="row ">
@@ -59,16 +59,16 @@
                                     <!-- inputs--> 
                                         Nombre de Usuario
                                         <div class="opacity-75">
-                                            <input type="text" name="codigoRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="nombreUsuario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Correo Electronico
                                         <div class="opacity-75">
-                                            <input type="text" name="nombreRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="correoUsuario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
                                         Contraseña 
                                     <div class="opacity-75">
-                                        <input type="text" name="descripcionRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input type="text" name="ContraseniaUsuario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
                                     <!--
                                     Fecha de Creacion
@@ -105,8 +105,9 @@
 
                                     </style>
                                     <div  class="py-1" >Rol</div>  
+
                                     <div class="btn-group form-control " style="background-color: #C2D7DB; border:none ; position: relative; bottom: 14px;">
-                                        <select id="miSelect3" name="" class=" btn ">
+                                        <select id="miSelect3" name="rolUsuario" class=" btn ">
                                             <option disabled selected>Seleccione..</option>
 
                                              
