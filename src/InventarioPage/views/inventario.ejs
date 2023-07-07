@@ -96,52 +96,52 @@
                     <script>
                         $(document).ready(function() {
                         $('#miSelect').select2();
+                        $('#miSelect2').select2();
+
                         });
                     </script>
                 </div>
-                <!--Código
-                <div class="opacity-75">
-                    <input type="text" name="egresoCodigo" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
-                </div>-->
-                
-            </div>
+                <div class="row py-2">
+                    <div class="col-6 py-3">
+                        Accion
+                        <div class="opacity-75">
+                            <select name="medidaRegistro"id="miSelect2" class="form-control ">
+                                <option  disabled selected >Seleccione</option>
+                                <!-- Agrega más opciones aquí -->
+                            </select>
+                        </div>
 
-            <!-- combo box Accion--> 
-             <!--Ariel arregla esto por favor gracias--> 
-            <div class="col-sm-8 col-md-2 col-lg-2 col-xl-2 p-2 ">
-                <div class="justify-content-start  fs-5" style="color: #385277;"> 
-                    
-                     Accion 
-                    <select name="medidaRegistro" class=" btn border-2   dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
-                                            <option disabled selected>Seleccione..</option>
-                                            <option value="" style="color: #707070;"></option>
-                    </select>
-            </div>
+                    </div>
+                    <div class="col-6 py-3"> 
+                        Cantidad
+                        <div class="opacity-75 py-2 d-flex">
+                        <input type="text" name="codigoRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                        </div>
+                    </div>
 
+                    </div>
 
+                    <div class="col-ms-6 col-md-12 col-lg-12 col-xl-12 col-xl-12 pt-2  ">
+                        <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #81C79F; border-color: #707070;" >ACEPTAR</button>
 
-            <div class="container mt-4">
-                Cantidad
-                <div class="opacity-75">
-                    <input type="text" name="egresoCantidad" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                    </div>
                 </div>
+
+            </div>
                 
-            </div>
-            <div class="container  mt-4">
-
-                <div class="col-ms-6 col-md-12 col-lg-12 col-xl-12 col-xl-12 pt-2  ">
-                    <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #81C79F; border-color: #707070;" >ACEPTAR</button>
-
-                </div>
-            </div>
-
-            
-            
-
+                
         </div>
+
+                    
+                     
+                
+
+
+                  
+            
+
         
     </div>
-    </form>
         <script>
     
         $(document).ready(function(){
@@ -344,11 +344,11 @@
         .select2-selection__rendered {
         background-color: #99B3D8;
         padding-top: 9px;
-        border-radius: 15px;
-        overflow: hidden;
+        border-radius: 5px;
         text-align: center;
         /* Color y tamaño del borde del combo box*/
         border: 2px solid #385277;
+        font-size: 20px;
 
     }
 
@@ -367,9 +367,8 @@
     
 
 
-
-
-</div> <!-- SIMPLEMENTE ICONO PARA HOME -->  
+</div>
+    </form>
     <footer class="p-3  z-3 " style="background-color:#385277 ; margin-top: auto;  ">
             <a href="/home">
             <label style="color: white;">HOME</label><img src="https://i.ibb.co/QF1WGmT/casa-1.png" style="height: 2rem; ">
