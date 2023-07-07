@@ -5,14 +5,31 @@ const sql = require("mssql")
 //Ver proveedor
 const authPageCrearUsuario = async (req, res) =>{
     if(req.session.loggedin){
-        const pool = await dbConnection.getConnection();    
+        if(req.session.rol=="Administrador"){
+            const pool = await dbConnection.getConnection();    
         const resultrol = await pool.request().query('SELECT * FROM Rol')
         res.render('./UsuarioPage/views/Crear_usuario',{
+            admin:false,
             login:true,
             name:req.session.name,
             rol:req.session.rol,
             Rol:resultrol.recordset,
         });
+
+        }else{
+            res.render('./UsuarioPage/views/Crear_usuario',{
+                login:true,
+                admin:true,
+                alert:true,
+                alertTitle:"ERROR",
+                alertMessage: "Necesita ser Administrador",
+                alertIcon:'error',
+                showConfirmButton:true,
+                timer:false,
+                ruta:'home'
+            });
+        }
+        
     }else{
         res.render('./LoginPage/views/Login',{
             alert:true,
@@ -32,45 +49,38 @@ const authPageCrearUsuario = async (req, res) =>{
 const InsertUsuario = async (req, res) =>{
     try {
 
-        const nombreProveedor = req.body.nombreProveedor;
-        const empresaProveedor = req.body.empresaProveedor;
-        const correoProveedor = req.body.correoProveedor;
-        const contactoProveedor = req.body.contactoProveedor;
-        const rucProveedor = req.body.rucProveedor;
-        const direccionProveedor = req.body.direccionProveedor;
-        const observacionProveedor = req.body.observacionProveedor; 
+        const nombreUsuario = req.body.nombreUsuario;
+        const correoUsuario = req.body.correoUsuario;
+        const ContraseniaUsuario = req.body.ContraseniaUsuario;
+        const rolUsuario = req.body.rolUsuario;
         const pool = await dbConnection.getConnection();
 
         //validaciones
         //todos los campos llenos
-        if(nombreProveedor && empresaProveedor && 
-            correoProveedor && contactoProveedor && 
-            rucProveedor &&direccionProveedor&&observacionProveedor){
-            await pool.request().input('NOMBREPROOVEDOR', sql.VarChar(50), nombreProveedor)
-                            .input('RUCPROOVEDOR', sql.VarChar(15), rucProveedor)
-                            .input('CONTACTOPROOVEDOR', sql.VarChar(50), contactoProveedor)
-                            .input('EMPRESAPROOV', sql.VarChar(20), empresaProveedor)
-                            .input('CORREOPROOV', sql.VarChar(40), correoProveedor)
-                            .input('DIRECCIONPROOV', sql.VarChar(40), direccionProveedor)
-                            .input('OBSERVACIONPROOV', sql.VarChar(100), observacionProveedor)
-                            .query('INSERT INTO PROVEEDOR VALUES (@NOMBREPROOVEDOR,@RUCPROOVEDOR,@CONTACTOPROOVEDOR,@EMPRESAPROOV,@CORREOPROOV,@DIRECCIONPROOV,@OBSERVACIONPROOV,GETDATE())')
-                            
-                            res.render('./CrearProveedorPage/views/Crear_proveedor',{
-                                bienProve:true,
+        if(nombreUsuario && correoUsuario && 
+            ContraseniaUsuario && rolUsuario){
+            await pool.request().input('IDROL', sql.Int, rolUsuario)
+                            .input('NOMBREUSUARIO', sql.VarChar(20), nombreUsuario)
+                            .input('CORREOUSUARIO', sql.VarChar(50), correoUsuario)
+                            .input('CONTRASENIAUSUARIO', sql.VarChar(50), ContraseniaUsuario)
+                            .query('INSERT INTO Usuario (@IDROL,@NOMBREUSUARIO,@CORREOUSUARIO,@CONTRASENIAUSUARIO,GETDATE())')
+
+                            res.render('./UsuarioPage/views/Crear_usuario',{
+                                bienUsuario:true,
                                 login:false,
                                 alert:true,
                                 alertTitle:"EXITOSO",
-                                alertMessage: "Proveedor ingresado correctamente",
+                                alertMessage: "Usuario ingresado correctamente",
                                 alertIcon:'success',
                                 showConfirmButton:true,
                                 timer:false,
-                                ruta:'crearProveedor',
+                                ruta:'crearUsuario',
                                
                               })
         //ningun campo lleno
         }else{
-            res.render('./CrearProveedorPage/views/Crear_proveedor',{
-                bienProve:false,
+            res.render('./UsuarioPage/views/Crear_usuario',{
+                bienUsuario:false,
                 login:false,
                 alert:true,
                 alertTitle:"ERROR",

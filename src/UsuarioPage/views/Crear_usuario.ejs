@@ -19,8 +19,26 @@
     
 </head>
 <body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
-         
+    
+    
+
     <% if (login){ %> 
+        <% if (admin) { %>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+            <% if (typeof alert != "undefined") { %>
+                <script>
+                    Swal.fire({
+                    title: '<%= alertTitle %>',
+                    text:'<%= alertMessage %>',
+                    icon: '<%= alertIcon %>',
+                    showConfirmButton:<%= showConfirmButton %>,
+                    timer:<%= timer %>
+                    }).then(()=>{
+                        window.location='./<%= ruta %>'
+                    })
+                </script>
+            <% }; %>
+            <% } else { }; %>
     <!-- Aqui ya te la sabes --> 
 
    <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
@@ -64,11 +82,11 @@
 
                                         Correo Electronico
                                         <div class="opacity-75">
-                                            <input type="text" name="correoUsuario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="email" name="correoUsuario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
                                         Contraseña 
                                     <div class="opacity-75">
-                                        <input type="text" name="ContraseniaUsuario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input type="password" name="ContraseniaUsuario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
                                     <!--
                                     Fecha de Creacion
@@ -109,8 +127,13 @@
                                     <div class="btn-group form-control " style="background-color: #C2D7DB; border:none ; position: relative; bottom: 14px;">
                                         <select id="miSelect" name="rolUsuario" class=" btn ">
                                             <option disabled selected>Seleccione..</option>
+                                            <% Rol?.forEach((rol) =>{ %>  
+                                                <% id_rol= rol.IDROL %>
+                                                <% nombre_rol= rol.NOMBREROL %> 
+                                            
+                                            <option value="<%= id_rol %>" style="color: #707070;"><%= nombre_rol%></option>
 
-                                             
+                                            <% }); %> 
 
 
                                         </select>
@@ -173,7 +196,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           
-        <% if (bienRegi) { %>
+        <% if (bienUsuario) { %>
             <% if (typeof alert != "undefined") { %>
                 <script>
                     Swal.fire({
