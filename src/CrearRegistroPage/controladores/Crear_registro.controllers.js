@@ -70,6 +70,18 @@ const InsertRegistro = async (req, res) =>{
                     timer:false,
                 })
             }
+            if(cantidadMinimaRegistro==cantidadMaximaRegistro){
+                res.render('./CrearRegistroPage/views/Crear_registro',{
+                    bienRegi:false,
+                    login:false,
+                    alert:true,
+                    alertTitle:"ERROR",
+                    alertMessage: "La cantidades no pueden ser iguales",
+                    alertIcon:'error',
+                    showConfirmButton:true,
+                    timer:false,
+                })
+            }
             if(cantidadMaximaRegistro<cantidadMinimaRegistro){
                 res.render('./CrearRegistroPage/views/Crear_registro',{
                     bienRegi:false,

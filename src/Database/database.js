@@ -5,7 +5,7 @@ const sql = require("mssql")
 //datos para la conexion
 const dbSettings = {
     user:'Vincu',
-    password:'Vincu2023',
+    password:'Vincu20231',
     server:'localhost',
     database:"Vinculacion2",
    // database:"Vinculaciondb2",

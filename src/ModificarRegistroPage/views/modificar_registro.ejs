@@ -75,7 +75,7 @@
     </nav>
     <% if (RERE) { %>
     
-    <form action="/insertarRegistro" method="POST">
+    <form action="/update-registro" method="POST">
          <!-- Estructura  --> 
     <div class="container ">
         <div class="row ">
@@ -88,12 +88,12 @@
                                     <!-- inputs--> 
                                     Código
                                         <div class="opacity-75">
-                                            <input type="text" name="codigoRegistro2" value="<%= RERE.CODIGOREPUESTO  %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="codigoRegistro" value="<%= RERE.CODIGOREPUESTO  %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Nombre
                                         <div class="opacity-75">
-                                            <input type="text" name="nombreRegistro2" value="<%= RERE.NOMBREREPUESTO  %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input type="text" name="nombreRegistro" value="<%= RERE.NOMBREREPUESTO  %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Descripción
@@ -108,7 +108,7 @@
                                 <div class="justify-content-start  fs-5" style="color: #385277;  "> 
                                         Marca  
                                     <div class="btn-group form-control " style="border:none ;background-color: #C2D7DB;">
-                                        <select id="miSelect" name="marcaRegistro2" class=" btn ">
+                                        <select id="miSelect" name="marcaRegistro" class=" btn ">
 
                                             <% Marca2?.forEach((marca2) =>{ %>  
                                                 <% id_marca= marca2.IDMARCA %>
@@ -123,10 +123,11 @@
                                     <div  class="py-1" style="position: relative; bottom: 4px; ">Categoria</div>  
                                     <div class="btn-group form-control " style=" background-color: #C2D7DB; border:none ; position: relative; bottom: 7px; ">
                                         <select id="miSelect2" name="categoriaRegistro" class=" btn ">
-                                            <option disabled selected>Seleccione Nuevo..</option>
-
-
-
+                                            <% Categoria2?.forEach((categoria2) =>{ %>  
+                                                <% id_categoria= categoria2.IDCATEGORIA %>
+                                                <% nombre_categoria= categoria2.NOMBRECATEGORIA %>  
+                                                <option value="<%= id_categoria %>"  style="color: #707070;"<%= nombre_categoria === RERE.NOMBRECATEGORIA ? 'selected' : '' %>><%= nombre_categoria %></option>
+                                            <% }); %> 
                                         </select>
                                     </div>
 
@@ -134,10 +135,12 @@
                                     <div class="py-2" style="position: relative; bottom: 10px; ">Proveedor</div>  
                                     <div class="btn-group form-control " style="background-color: #C2D7DB; border:none ; position: relative; bottom: 14px;">
                                         <select id="miSelect3" name="proveedorRegistro" class=" btn ">
-                                            <option disabled selected>Seleccione Nuevo..</option>
-   
-
-
+                                            <% Proveedor2?.forEach((proveedor2) =>{ %>  
+                                                <% id_proveedor= proveedor2.IDPROOVEDOR %>
+                                                <% nombre_proveedor= proveedor2.NOMBREPROOVEDOR %>  
+                                                <% empresa_proveedor= proveedor2.EMPRESAPROOV %> 
+                                                <option value="<%= id_proveedor %>"  style="color: #707070;"<%= nombre_proveedor === RERE.NOMBREPROOVEDOR ? 'selected' : '' %>><%= nombre_proveedor%>-<%=empresa_proveedor%></option>
+                                            <% }); %> 
                                         </select>
                             
                                     </div>
@@ -149,8 +152,11 @@
                                 <div class="justify-content-start  fs-5" style="color: #385277;"> 
                                         Medida  
                                         <select name="medidaRegistro" class=" btn border-2  seleccionar dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
-
-                                            <option  disabled selected>Seleccione </option>
+                                            <% Medida2?.forEach((medida2) =>{ %>  
+                                                <% id_medida= medida2.IDMEDIDA %>
+                                                <% nombre_medida= medida2.NOMBREMEDIDA %>
+                                                <option value="<%= id_medida %>"  style="color: #707070;"<%= nombre_medida === RERE.NOMBREMEDIDA ? 'selected' : '' %>><%= nombre_medida %></option>
+                                            <% }); %> 
                                         </select>
                                        
                                 </div>
@@ -159,7 +165,7 @@
                                 <div class="justify-content-start fs-5 " style="color: #385277;">
                                     Modelo
                                     <div class="opacity-75">
-                                        <input name="modeloRegistro2" value="<%= RERE.MODELOREPUESTO%>" type="text" class=" form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input name="modeloRegistro" value="<%= RERE.MODELOREPUESTO%>" type="text" class=" form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
                                 </div>
 
@@ -171,7 +177,7 @@
                                 <div class="py-4 " style="color: #385277; ">
                                     <div class="opacity-75">
                                         <div class="form-floating rounded-4 border-2">
-                                            <textarea name="observacionRegistro2" style="font-size: small; background-color: #99B3D8; color: black; border-color: #385277; " class="form-control"  id="floatingTextarea"><%= RERE.OBSERVACIONREPUEST  %></textarea>
+                                            <textarea name="observacionRegistro" style="font-size: small; background-color: #99B3D8; color: black; border-color: #385277; " class="form-control"  id="floatingTextarea"><%= RERE.OBSERVACIONREPUEST  %></textarea>
                                             <label for="floatingTextarea" style="color:  #385277;  ">Observación</label>
                                         </div>
                                          
@@ -196,6 +202,10 @@
                             </div> 
                             <div class="col-6- col-md-3 col-lg-3 col-xl-3 pt-2  pt-2">
                                 <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #D64C6D; border-color: #707070;" ><FONT COLOR="white">ELIMINAR</FONT></button>
+                            </div>
+
+                            <div class="opacity-75">
+                                <input type="text"  name="idrepuesto" value="<%= RERE.IDRESPUESTO %>" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;" hidden>
                             </div>
                         </div>
                     </div>
@@ -232,12 +242,12 @@
                     
             
                         <!-- input de cantidad maxima -->  
-                        <input name="cantidadMaximaRegistro2"  value="<%= RERE.MAXCANREPUESTO  %>"  type="text" placeholder="Max"  class=" form-control rounded-4 border-2" 
+                        <input name="cantidadMaximaRegistro"  value="<%= RERE.MAXCANREPUESTO  %>"  type="text" placeholder="Max"  class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                     
             
                         <!-- input de cantidad minima -->  
-                        <input name="cantidadMinimaRegistro2" value="<%= RERE.MINCANREPUESTO  %>"  type="text" placeholder="Min" class=" form-control rounded-4 border-2" 
+                        <input name="cantidadMinimaRegistro" value="<%= RERE.MINCANREPUESTO  %>"  type="text" placeholder="Min" class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                                                     
                     </div>
@@ -269,20 +279,40 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
-    <% if (typeof alert != "undefined") { %>
-        <script>
-            Swal.fire({
-            title: '<%= alertTitle %>',
-            text:'<%= alertMessage %>',
-            icon: '<%= alertIcon %>',
-            showConfirmButton:<%= showConfirmButton %>,
-            timer:<%= timer %>
-            }).then(()=>{
-                window.location='./<%= ruta %>'
-            })
-        </script>
-    <% }; %>
+    <% if (bienRegi) { %>
+        <% if (typeof alert != "undefined") { %>
+            <script>
+                Swal.fire({
+                title: '<%= alertTitle %>',
+                text:'<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton:<%= showConfirmButton %>,
+                timer:<%= timer %>
+                }).then(()=>{
+                    window.location='./<%= ruta %>'
+                })
+            </script>
+        <% }; %>
+        <% } else { %>
+            <% if (typeof alert != "undefined") { %>
+                <script>
+                    Swal.fire({
+                    title: '<%= alertTitle %>',
+                    text:'<%= alertMessage %>',
+                    icon: '<%= alertIcon %>',
+                    showConfirmButton:<%= showConfirmButton %>,
+                    timer:<%= timer %>
+                    }).then(()=>{
+                        window.history.go(-1)
+                    })
+                </script>
+            <% }; %>
+            <% } %>   
     <% } %>
+
+
+
+
     <!-- SIMPLEMENTE ICONO PARA HOME -->  
     <footer class="p-3  z-3 " style="background-color:#385277 ; margin-top: auto;  ">
             <a href="/home">
