@@ -59,15 +59,22 @@
 
                 </thead>    
                 <tbody>
+                    <% HistorialEgreso?.forEach((He) =>{ %>  
+                        <% NOMBREREPUESTO=He.NOMBREREPUESTO %>
+                        <% CODIGOREPUESTO=He.CODIGOREPUESTO %>
+                        <% CANTIDADEGRESOREPUESTO=He.CANTIDADEGRESOREPUESTO %>
+                        <% FECHAEGRESOREPUESTO=He.FECHAEGRESOREPUESTO.toLocaleDateString() %>
+                        <% FECHAEGRESOREPUESTOHORA=He.FECHAEGRESOREPUESTO.toLocaleTimeString() %>
+                        <% NOMBREUSUARIO=He.NOMBREUSUARIO %>
                     <tr>
-                        <th>130590</th>
-                        <th>Respuestovm</th>
-                        <th>SI </th>
-                        <th>27-06-2023</th>
-                        <th>Ariel</th>
+                        <th><%= NOMBREREPUESTO %></th>
+                        <th><%= CODIGOREPUESTO %></th>
+                        <th><%= CANTIDADEGRESOREPUESTO %> </th>
+                        <th><%= FECHAEGRESOREPUESTO %> <%= FECHAEGRESOREPUESTOHORA %></th>
+                        <th><%= NOMBREUSUARIO %></th>
 
                     </tr>
-                    
+                    <% }); %>
                 </tbody>
                 <tfoot>
                     <tr>

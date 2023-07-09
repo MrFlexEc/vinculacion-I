@@ -3,7 +3,7 @@
  //Constante para invocar las rutas
  const router = express.Router();
  //Traer los metodos de las consultas
- const {authPageHistorialEgreso} = require('../controladores/Historial_Egreso')
+ const {authPageHistorialEgreso} = require('../controladores/Historial_Egreso.controllers')
 
 
  

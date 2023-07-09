@@ -45,8 +45,8 @@ app.use(require('./ModificarProveedorPage/rutas/modificar_proveedor.router'))
 app.use(require('./InventarioPage/rutas/inventario.router'))
 app.use(require('./DataVerPage/rutas/DataVer.router'))
 app.use(require('./UsuarioPage/rutas/Crear_usuarior.router'))
-app.use(require('./HistorialIngresoPage/rutas/Historial_Ingreso'))
-app.use(require('./HistorialEgresoPage/rutas/Historial_Egreso'))
+app.use(require('./HistorialIngresoPage/rutas/Historial_Ingreso.router'))
+app.use(require('./HistorialEgresoPage/rutas/Historial_Egreso.router'))
 
 //invocar metodos express este caso para levantar el servidor
 app.listen(app.get('port'), ()=>{
