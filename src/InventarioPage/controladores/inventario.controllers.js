@@ -8,12 +8,34 @@ const authPageInventario = async (req, res) =>{
         const pool = await dbConnection.getConnection();
         const resultInventario = await pool.request().query('select rep.IDRESPUESTO,rep.CODIGOREPUESTO, rep.NOMBREREPUESTO, rep.CANTIDADREPUESTO, rep.MINCANREPUESTO,rep.MAXCANREPUESTO,  rep.FECHAREPUESTO, mar.NOMBREMARCA, pro.NOMBREPROOVEDOR, cat.NOMBRECATEGORIA, pre.PUBLICOPRECIO from REPUESTO rep inner join PROVEEDOR pro on rep.IDPROOVEDOR = pro.IDPROOVEDOR inner join MARCA mar on rep.IDMARCA = MAR.IDMARCA inner join CATEGORIA cat on rep.IDCATEGORIA = cat.IDCATEGORIA inner join PRECIO pre on rep.IDRESPUESTO = pre.IDRESPUESTO')
         const resulrepuesto = await pool.request().query('SELECT * FROM Repuesto')
+
+        const RepuestoAlerta = (await pool.request().query('SELECT * FROM Repuesto')).recordset;
+        const alertas = []; // arreglo para almacenar las alertas
+            RepuestoAlerta?.forEach((mini) => {
+            const Nombre= mini.NOMBREREPUESTO
+            const CANTIDADMIN= parseInt(mini.MINCANREPUESTO) 
+            const CANTIDAD= parseInt(mini.CANTIDADREPUESTO) 
+            console.log(alertas) 
+            if(CANTIDAD < CANTIDADMIN) { 
+                alertas.push({
+                    alertTitle: "Cantidad baja",
+                    alertMessage: "El repuesto: " + Nombre + " tiene pocas unidades: " + CANTIDAD,
+                    alertIcon: 'warning',
+                    showConfirmButton: true,
+                    timer: false,
+                });
+            } 
+            
+        });
+
         res.render('./InventarioPage/views/inventario',{
             login:true,
             name:req.session.name,
             rol:req.session.rol,
             resultadoInven:resultInventario.recordset,
             Repuesto:resulrepuesto.recordset,
+            alert: true,
+            alertas: alertas,
         });
     }else{
         res.render('./LoginPage/views/Login',{

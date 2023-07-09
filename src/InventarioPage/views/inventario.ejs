@@ -13,6 +13,26 @@
 <body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
     <% if (login){ %>
 
+        <% if (typeof alertas !== "undefined" && alertas.length > 0) { %>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+              document.addEventListener('DOMContentLoaded', async () => {
+                const alertas = JSON.parse('<%- JSON.stringify(alertas) %>');
+                
+                for (let i = 0; i < alertas.length; i++) {
+                  const alerta = alertas[i];
+                  await Swal.fire({
+                    icon: alerta.alertIcon,
+                    title: alerta.alertTitle,
+                    text: alerta.alertMessage,
+                    showConfirmButton: i === alertas.length - 1 ? alerta.showConfirmButton : false,
+                    timer: alerta.timer,
+                  });
+                }
+              });
+            </script>
+          <% }; %>
+
    
     <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
         <div class="container-fluid d-flex justify-content-start">

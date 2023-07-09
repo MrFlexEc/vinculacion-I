@@ -10,10 +10,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-
+    <style>
+      .custom-alert {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    </style>
   </head>
 <body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
   <% if (login){ %>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <% if (typeof alertas !== "undefined" && alertas.length > 0) { %>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+          const alertas = JSON.parse('<%- JSON.stringify(alertas) %>');
+          
+          for (let i = 0; i < alertas.length; i++) {
+            const alerta = alertas[i];
+            await Swal.fire({
+              icon: alerta.alertIcon,
+              title: alerta.alertTitle,
+              text: alerta.alertMessage,
+              showConfirmButton: i === alertas.length - 1 ? alerta.showConfirmButton : false,
+              timer: alerta.timer,
+            });
+          }
+        });
+      </script>
+    <% }; %>
+    
+
       <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
         <div class="container-fluid ">
           <div class="navbar-toggler-icon justify-content-start z-1"><div class="px-5 z3">PANEL_ADMINISTRATIVO</div> </div> <!--icono-->
