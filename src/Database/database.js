@@ -15,13 +15,6 @@ const dbSettings = {
     user:'pruebaNode',
     password:'jajasalu2',
     server:'localhost',
-    database:"ejemplo",
-    port:1433,
-    
-   /*
-    user:'pruebaNode',
-    password:'jajasalu2',
-    server:'localhost',
     database:"Vinculacion2",
     port:1433,
     */

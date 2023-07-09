@@ -6,10 +6,10 @@
  const {authPageCrearRegistro,InsertRegistro} = require('../controladores/Crear_registro.controllers')
 
 
- //ruta para ver la interfaz de proveedor
+ //ruta para ver la interfaz de registro
  router.get('/crearRegistro', authPageCrearRegistro)
 
-  //ruta para insertar un proveedor 
+  //ruta para insertar un registro 
   router.post('/insertarRegistro', InsertRegistro) 
 
 

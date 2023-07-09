@@ -3,7 +3,7 @@ const dbConnection = require('../../Database/database')
 const sql = require("mssql")
 
 
-//Ver Home
+//Ver registro
 const authPageVerRegistros = async (req, res) =>{
     if(req.session.loggedin){
         const pool = await dbConnection.getConnection();

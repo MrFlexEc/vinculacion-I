@@ -23,7 +23,7 @@ const authPageCrearProveedor = async (req, res) =>{
     }
 }
 
-//Ver proveedor
+//Ver proveedor 2
 const authPageCrearProveedor2 = async (req, res) =>{
     if(req.session.loggedin){
         res.render('./CrearProveedorPage/views/Crear_proveedor2',{

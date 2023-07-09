@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get('/inventario', authPageInventario)
 
-//ruta realizar el egreso
+//ruta realizar el egreso e ingreso
 router.post('/EgresoinventarioInventario', EgresoRepuestoIngreso)
 module.exports = router;

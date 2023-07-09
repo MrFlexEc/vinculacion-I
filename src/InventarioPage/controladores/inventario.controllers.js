@@ -2,7 +2,7 @@
 const dbConnection = require('../../Database/database')
 const sql = require("mssql")
 
-//Ver Home
+//Ver Inventario
 const authPageInventario = async (req, res) =>{
     if(req.session.loggedin){
         const pool = await dbConnection.getConnection();

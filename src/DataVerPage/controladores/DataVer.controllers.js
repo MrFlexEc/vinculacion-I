@@ -37,7 +37,6 @@ const authPageDataVer = async (req, res) =>{
             ruta:'login'
         });
     }
-  //  res.render('./HomePage/views/Home')
 }
 
 
@@ -45,6 +44,5 @@ const authPageDataVer = async (req, res) =>{
 
 
 module.exports ={
-    //  data,
     authPageDataVer
 }

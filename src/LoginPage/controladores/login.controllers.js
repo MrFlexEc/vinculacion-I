@@ -76,23 +76,6 @@ const destroysession = async (req, res) =>{
     })
 }
 
-//Autenticar paginas
-/*
-const authPages = async (req, res) =>{
-    if(req.session.loggedin){
-        res.render('./LoginPage/views/ejemplo',{
-            login:true,
-            name:req.session.name
-        });
-    }else{
-        res.render('./LoginPage/views/ejemplo',{
-            login:false,
-            name:"Debe iniciar sesion"
-        });
-    }
-}*/
-
-
 
 
 

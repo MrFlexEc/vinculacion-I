@@ -33,7 +33,15 @@
         document.addEventListener('DOMContentLoaded', async () => {
           const alertas = JSON.parse('<%- JSON.stringify(alertas) %>');
           
-          for (let i = 0; i < alertas.length; i++) {
+          await Swal.fire({
+            icon: alertas[0].alertIcon,
+            title: alertas[0].alertTitle,
+            text: alertas[0].alertMessage,
+            showConfirmButton: false,
+            timer: alertas[0].timer,
+          });
+    
+          for (let i = 1; i < alertas.length; i++) {
             const alerta = alertas[i];
             await Swal.fire({
               icon: alerta.alertIcon,
@@ -46,6 +54,7 @@
         });
       </script>
     <% }; %>
+    
     
 
       <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
