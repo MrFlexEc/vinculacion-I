@@ -13,12 +13,13 @@
 </head>
 <body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
          <!-- Aqui ya te la sabes --> 
-
+    <% if (login){ %>
    <nav class="navbar sticky-top" style="background-color:#385277 ;color: #a3c1d5;" >  
         <div class="container-fluid">
             <div class="p-2 d-flex justify-content-start"> DATA DE REGISTRO <label class="p-2" style="font-size: 10px;" >(Solo Lectura)</label></div>
         </div>
     </nav>
+    <% if (RERE) { %>
          <!-- Estructura  --> 
     <div class="container p-2">
         <div class="row ">
@@ -31,17 +32,17 @@
                                     <!-- inputs--> 
                                     Código
                                     <div class="opacity-75">
-                                        <input type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input readonly value="<%= RERE.CODIGOREPUESTO  %>" type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
 
                                     Nombre
                                     <div class="opacity-75">
-                                        <input type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input readonly value="<%= RERE.NOMBREREPUESTO  %>" type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
 
                                     Descripción
                                     <div class="opacity-75">
-                                        <input type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input readonly value="<%= RERE.DESCRIPCIONREPUESTO  %>" type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
                                 </div>
         
@@ -51,17 +52,17 @@
                                 <div class="justify-content-start fs-4 " style="color: #385277; ">
                                     Marca
                                     <div class="opacity-75">
-                                        <input type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input readonly value="<%= RERE.NOMBREMARCA  %>" type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
 
                                     Categoria
                                     <div class="opacity-75">
-                                        <input type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input readonly value="<%= RERE.NOMBRECATEGORIA  %>" type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
 
                                     Proveedor
                                     <div class="opacity-75">
-                                        <input type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input readonly value="<%= RERE.NOMBREPROOVEDOR + RERE.EMPRESAPROOV %>" type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
                                     <!-- esta seccion es importante, cambia propiedas de los combo box apartir de el--> 
                                      
@@ -75,12 +76,12 @@
                                 <div class="justify-content-start  fs-5" style="color: #385277;"> 
                                     Medida
                                     <div class="opacity-75">
-                                        <input type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input readonly value="<%= RERE.NOMBREMEDIDA %>" type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
 
                                     Modelo
                                     <div class="opacity-75">
-                                        <input type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input readonly value="<%= RERE.MODELOREPUESTO  %>" type="text" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
                                 </div>
 
@@ -94,7 +95,7 @@
                                 <div class="py-4 " style="color: #385277; ">
                                     <div class="opacity-75">
                                         <div class="form-floating rounded-4 border-2 ">
-                                            <textarea  style="font-size: small; background-color: #99B3D8; color: black; border-color: #385277; " class="form-control py-5"  id="floatingTextarea"></textarea>
+                                            <textarea readonly  style="font-size: small; background-color: #99B3D8; color: black; border-color: #385277; " class="form-control py-5"  id="floatingTextarea"><%= RERE.OBSERVACIONREPUEST  %></textarea>
                                             <label for="floatingTextarea" style="color:  #385277;  ">Observación</label>
                                         </div>
                                          
@@ -127,15 +128,15 @@
                         <!-- input de precios --> 
                         <div class="opacity-75"> 
                             <!-- input de precios publico--> 
-                            <input type="text" placeholder="Publico" class=" form-control rounded-3 border-2" 
+                            <input readonly value="<%= RERE.PUBLICOPRECIO  %>" type="text" placeholder="Publico" class=" form-control rounded-3 border-2" 
                             style="background-color: #A4B3C8; color: black; border-color: #00264b;" >
                                 
                             <!-- input de precios mayor--> 
-                            <input type="text" placeholder="Mayor"  class=" form-control rounded-3 border-2" 
+                            <input readonly value="<%= RERE.ALMAYORPRECIO  %>" type="text" placeholder="Mayor"  class=" form-control rounded-3 border-2" 
                             style="background-color: #A4B3C8; color: black; border-color: #00264b; " >
                                 
                             <!-- input de precios Frecuente--> 
-                            <input type="text" placeholder="Frecuente"  class=" form-control rounded-3 border-2" 
+                            <input readonly value="<%= RERE.FRECUENTEPRECIO  %>" type="text" placeholder="Frecuente"  class=" form-control rounded-3 border-2" 
                             style="background-color: #A4B3C8; color: black; border-color: #00264b;" >
                         </div> 
                     </div>
@@ -148,12 +149,12 @@
                         
             
                         <!-- input de cantidad maxima -->  
-                        <input type="text" placeholder="Max"  class=" form-control rounded-4 border-2" 
+                        <input readonly value="<%= RERE.MAXCANREPUESTO  %>" type="text" placeholder="Max"  class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                     
             
                         <!-- input de cantidad maxima -->  
-                        <input type="text" placeholder="Min" class=" form-control rounded-4 border-2" 
+                        <input readonly value="<%= RERE.MINCANREPUESTO  %>" type="text" placeholder="Min" class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                                                     
                     </div>
@@ -168,9 +169,11 @@
         </div>
         
     </div>
+
+    <% } %>
     <!-- SIMPLEMENTE ICONO PARA HOME -->  
     <footer class="p-3  z-3 " style="background-color:#385277 ; margin-top: auto;  ">
-            <a href="/">
+            <a href="/inventario">
             <label style="color: white;">VOLVER</label>
             </a>
     </footer> 
@@ -180,6 +183,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    
+    <% } else { %>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      
+        <% if (typeof alert != "undefined") { %>
+            <script>
+                Swal.fire({
+                title: '<%= alertTitle %>',
+                text:'<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton:<%= showConfirmButton %>,
+                timer:<%= timer %>
+                }).then(()=>{
+                    window.location='./<%= ruta %>'
+                })
+            </script>
+        <% }; %>
+        <% } %>
 </body>
 </html>
