@@ -7,7 +7,7 @@ const authPageCrearUsuario = async (req, res) =>{
     if(req.session.loggedin){
         if(req.session.rol=="Administrador"){
             const pool = await dbConnection.getConnection();    
-        const resultrol = await pool.request().query('SELECT * FROM Rol')
+            const resultrol = await pool.request().query('SELECT * FROM Rol')
         res.render('./UsuarioPage/views/Crear_usuario',{
             admin:false,
             login:true,
@@ -17,7 +17,10 @@ const authPageCrearUsuario = async (req, res) =>{
         });
 
         }else{
+            const pool = await dbConnection.getConnection();  
+            const resultrol = await pool.request().query('SELECT * FROM Rol')
             res.render('./UsuarioPage/views/Crear_usuario',{
+                Rol:resultrol.recordset,
                 login:true,
                 admin:true,
                 alert:true,
@@ -63,7 +66,7 @@ const InsertUsuario = async (req, res) =>{
                             .input('NOMBREUSUARIO', sql.VarChar(20), nombreUsuario)
                             .input('CORREOUSUARIO', sql.VarChar(50), correoUsuario)
                             .input('CONTRASENIAUSUARIO', sql.VarChar(50), ContraseniaUsuario)
-                            .query('INSERT INTO Usuario (@IDROL,@NOMBREUSUARIO,@CORREOUSUARIO,@CONTRASENIAUSUARIO,GETDATE())')
+                            .query('INSERT INTO Usuario VALUES (@IDROL,@NOMBREUSUARIO,@CORREOUSUARIO,@CONTRASENIAUSUARIO,GETDATE())')
 
                             res.render('./UsuarioPage/views/Crear_usuario',{
                                 bienUsuario:true,

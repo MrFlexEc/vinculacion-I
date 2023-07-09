@@ -6,8 +6,8 @@
  const {authPageDataVer} = require('../controladores/DataVer.controllers')
 
 
- //ruta para ver home
- router.get('/Data-ver', authPageDataVer)
+ //ruta para ver Datos completos de los repuestos
+ router.get('/Data-ver/:id', authPageDataVer)
 
 
  module.exports= router;
