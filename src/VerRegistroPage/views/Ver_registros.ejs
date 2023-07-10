@@ -65,6 +65,7 @@
                         <th>Fecha</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
+                        <th>Creado Por</th>
                         <th>Acciones</th>
                     </tr>
 
@@ -80,6 +81,7 @@
                         <% FECHA=VR.FECHAREPUESTO.toLocaleDateString() %>
                         <% FECHA2=VR.FECHAREPUESTO.toLocaleTimeString() %>
                         <% CANTIDAD=VR.CANTIDADREPUESTO %>
+                        <% NOMBREUSUARIO=VR.NOMBREUSUARIO %>
                         <% PRECIO=VR.PUBLICOPRECIO %>
                     <tr>
                         <th><%= CODIGO %></th>
@@ -89,6 +91,7 @@
                         <th><%= PROVEEDOR %></th>
                         <th><%= FECHA %> <%= FECHA2 %></th>
                         <th><%= CANTIDAD %></th>
+                        <th><%= NOMBREUSUARIO %></th>
                         <th>$<%= PRECIO %></th>
                         <th>
                             <a href="/modificar-registro/<%= IDRESPUESTO %>" class="btn btn-outline-info"><i class='bx bx-edit-alt'></i></a>
