@@ -2,9 +2,9 @@
 const dbConnection = require('../../Database/database')
 const sql = require("mssql")
 
-//Ver Home
+
 const authPageModificarRegistro = async (req, res) =>{
-    let IDREGISTROPara;
+
     if(req.session.loggedin){
         const IDREGISTROPara = req.params.id;
         console.log(IDREGISTROPara)
@@ -38,22 +38,15 @@ const authPageModificarRegistro = async (req, res) =>{
             ruta:'login'
         });
     }
-    //console.log("prueba");
-    //console.log(IDREGISTROPara);
-    // Agregar IDREGISTROPara como campo adicional en req
-  req.IDREGISTROPara = IDREGISTROPara;
+ 
 
-  // Llamar a la función EditarRegistro y pasar req y res
-  await EditarRegistro(req, res);
+ 
 }
 
 
 const EditarRegistro = async (req, res) =>{
     try {
-        const IDREGISTROPara = req.IDREGISTROPara; // Obtener el valor de IDREGISTROPara desde req
-        console.log("hola")
-        console.log(IDREGISTROPara)
-        const IDREGISTROEnvio = req.params.id;
+
         const IDRESPUESTO = req.body.idrepuesto;
         const codigoRegistro = req.body.codigoRegistro;
         const nombreRegistro = req.body.nombreRegistro;
@@ -75,15 +68,6 @@ const EditarRegistro = async (req, res) =>{
             &&marcaRegistro&&categoriaRegistro &&proveedorRegistro&& medidaRegistro
             &&modeloRegistro && observacionRegistro && preciopublicoRegistro && precioalmayorRegistro
             && preciofrecuenteRegistro && cantidadMaximaRegistro && cantidadMinimaRegistro ){
-
-                const RepuestoOriginal = await pool.request().input('IDRESPUESTO', sql.Int, IDRESPUESTO)
-                                                            .query('SELECT * FROM Repuesto where IDRESPUESTO=@IDRESPUESTO');
-                                                            console.log("hola")
-                    
-                                                            console.log(RepuestoOriginal.recordset.length)
-                                                            console.log(RepuestoOriginal.recordset[0].CODIGOREPUESTO)
-                    if (RepuestoOriginal.recordset.length == 0 || RepuestoOriginal.recordset[0].CODIGOREPUESTO == codigoRegistro) {
-
            
                                     //validad cantidad
                         if(cantidadMinimaRegistro>cantidadMaximaRegistro){
@@ -164,7 +148,8 @@ const EditarRegistro = async (req, res) =>{
                         }
           
                       
-                    }else{
+                    
+                    /*}else{
                         res.render('./CrearRegistroPage/views/Crear_registro',{
                             bienRegi:false,
                             login:false,
@@ -176,7 +161,7 @@ const EditarRegistro = async (req, res) =>{
                             timer:false,
                           });
 
-                    }
+                    }*/
 
         }else{
 
