@@ -10,9 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/Ytrg4r9/Monograma-Logotipo-belleza-blanco-y-negro.png" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    </head>
-<body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
     <% if (login){ %>
 
         <% if (typeof alertas !== "undefined" && alertas.length > 0) { %>
@@ -66,7 +65,17 @@
             
             <div class="d-flex justify-content-around" style="background-color: #385277;">
               <!--NAVEGACION -->
-              <div class="p-3"> <a href="#seccionObservar" style="text-decoration: none; color: #a3c1d5;">Observar</a></div>
+              <div class="p-3">
+                <li class="list-unstyled nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Observar
+                </a>
+                <ul class="dropdown-menu  "> 
+                    <li> <a class="dropdown-item" href="VerRegistros">Registros</a></li>
+                    <li> <a class="dropdown-item" href="Ver-Proveedor">Proveedor</a></li>
+                </ul>
+                </li>
+            </div>
               <div class="p-3"> <a href="inventario" style="text-decoration: none; color: #a3c1d5;">Inventario</a></div>
               <div class="p-3"> <a href="crearRegistro" style="text-decoration: none; color: #a3c1d5;">Registrar</a></div>
               <div class="p-3"> <a href="crearProveedor" style="text-decoration: none; color: #a3c1d5;">Proveedor</a></div>
@@ -101,7 +110,7 @@
 <div class="p-3">
     <form action="/EgresoinventarioInventario" method="POST">
     <div class="row  m-1 ">
-        <div class="col-sm-6 col-md-7 col-lg-7 col-xl-7 col-xxl-7  me-4 ">
+        <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7 col-xxl-7  me-4 ">
             <table class="text-start table " id="registros"  > 
                 <thead class="table-dark " style="color: #a3c1d5;">
                     <tr>
@@ -161,7 +170,7 @@
         </div>
 
         
-        <div class="col-sm-5 col-md-4 col-lg-4 col-xl-4 col-xxl-4 pt-5 justify-content-start fs-4 px-4" style="color: #385277;    border-left-color: red;">
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 pt-5 justify-content-start fs-4 px-4" style="color: #385277; ">
             <div class="container   ">
                 <div style="font-size: 3rem; " class="">Ingreso - Egreso</div>
                 <hr>
@@ -212,16 +221,17 @@
                     </div>
                     <div class="container ">
                         <div class="col-12  row">
-                            <div class="col-2"></div>
-                            <div class="col-8 "> 
+                            <div class="col-1"></div>
+                            <div class="col-10 "> 
                                 
-                                <div class=" d-flex">
+                                <div class=" d-flex ">
                                     Fecha
-                                    <input type="datetime-local" name="fechaudiInventario" class="form-control rounded-4 border-2 opacity-75" style="background-color: #99B3D8; color: black; border-color: #385277;">
+
+                                    <input type="datetime-local" name="fechaudiInventario" class=" text-center form-control rounded-4 border-2 opacity-75" style="background-color: #99B3D8; color: black; border-color: #385277;">
                             
                                 </div>
                             </div>
-                            <div class="col-6"></div>
+                            <div class="col-1"></div>
 
                         </div>
                        
