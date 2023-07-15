@@ -7,7 +7,7 @@ const sql = require("mssql")
 const authPageHistorialEgreso = async (req, res) =>{
     if(req.session.loggedin){
         const pool = await dbConnection.getConnection();
-        const resultHistorialEgreso = await pool.request().query('select rep.NOMBREREPUESTO,rep.CODIGOREPUESTO,egprep.CANTIDADEGRESOREPUESTO,egprep.FECHAEGRESOREPUESTO,usu.NOMBREUSUARIO from REPUESTO rep inner join EGRESO_REPUESTO egprep on rep.IDRESPUESTO = egprep.IDRESPUESTO inner join USUARIO usu on usu.IDUSUARIO = egprep.IDUSUARIO')
+        const resultHistorialEgreso = await pool.request().query('select rep.NOMBREREPUESTO,rep.CODIGOREPUESTO,egprep.CANTIDADEGRESOREPUESTO,egprep.FECHAEGRESOREPUESTO,egprep.FECHAUDIEGRESOREPUESTO,usu.NOMBREUSUARIO from REPUESTO rep inner join EGRESO_REPUESTO egprep on rep.IDRESPUESTO = egprep.IDRESPUESTO inner join USUARIO usu on usu.IDUSUARIO = egprep.IDUSUARIO')
         res.render('./HistorialEgresoPage/views/Historial_Egreso',{
             login:true,
             name:req.session.name,

@@ -113,8 +113,7 @@ const InsertRegistro = async (req, res) =>{
                         })
                     }
                     if(cantidadMinimaRegistro<cantidadMaximaRegistro && cantidadMaximaRegistro>=cantidadMinimaRegistro){
-                        await pool.request().input('IDPROOVEDOR', sql.Int, proveedorRegistro)
-                        .input('IDCATEGORIA', sql.Int, categoriaRegistro)
+                        await pool.request().input('IDCATEGORIA', sql.Int, categoriaRegistro)
                         .input('IDMARCA', sql.Int, marcaRegistro)
                         .input('IDMEDIDA', sql.Int, medidaRegistro)
                         .input('NOMBREREPUESTO', sql.VarChar(20), nombreRegistro)
@@ -124,7 +123,7 @@ const InsertRegistro = async (req, res) =>{
                         .input('MINCANREPUESTO', sql.SmallInt, cantidadMinimaRegistro)
                         .input('MAXCANREPUESTO', sql.SmallInt, cantidadMaximaRegistro)
                         .input('OBSERVACIONREPUEST', sql.VarChar(50), observacionRegistro)
-                        .query('INSERT INTO REPUESTO VALUES (@IDPROOVEDOR,@IDCATEGORIA,@IDMARCA,@IDMEDIDA,@NOMBREREPUESTO,@CODIGOREPUESTO,@DESCRIPCIONREPUESTO,@MODELOREPUESTO,@MINCANREPUESTO,@MAXCANREPUESTO,0,@OBSERVACIONREPUEST,GETDATE())')
+                        .query('INSERT INTO REPUESTO VALUES (@IDCATEGORIA,@IDMARCA,@IDMEDIDA,@NOMBREREPUESTO,@CODIGOREPUESTO,@DESCRIPCIONREPUESTO,@MODELOREPUESTO,@MINCANREPUESTO,@MAXCANREPUESTO,0,@OBSERVACIONREPUEST,GETDATE())')
 
                         const resultPrecio = await pool.request()
                                         .input('CODIGOREPUESTO', sql.VarChar(10), codigoRegistro)
@@ -140,7 +139,8 @@ const InsertRegistro = async (req, res) =>{
                                     
                                             await pool.request().input('IDUSUARIO', sql.Int, id_usuario)
                                                                 .input('IDRESPUESTO', sql.Int, id_repuesto)
-                                                                .query('INSERT INTO USUARIO_REPUESTO VALUES (@IDUSUARIO,@IDRESPUESTO)')
+                                                                .input('IDPROOVEDOR', sql.Int, proveedorRegistro)
+                                                                .query('INSERT INTO USUARIO_REPUESTO_PROVEEDOR VALUES (@IDUSUARIO,@IDRESPUESTO,@IDPROOVEDOR)')
                                         }                                                   
                                         res.render('./CrearRegistroPage/views/Crear_registro',{
                                             bienRegi:true,

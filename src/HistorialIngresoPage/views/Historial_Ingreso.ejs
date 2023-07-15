@@ -54,6 +54,7 @@
                         <th>Nombre</th>
                         <th>Ingreso</th>
                         <th>Fecha</th>
+                        <th>FechaAudi</th>
                         <th>Creado Por</th>
                         
                     </tr>
@@ -66,12 +67,18 @@
                         <% CANTIDAINGRESODREPUESTO=Hi.CANTIDAINGRESODREPUESTO %>
                         <% FECHAINGRESOREPUESTO=Hi.FECHAINGRESOREPUESTO.toLocaleDateString() %>
                         <% FECHAINGRESOREPUESTOHORA=Hi.FECHAINGRESOREPUESTO.toLocaleTimeString() %>
+                        <% if (Hi.FECHAAUDIINGRESOREPUESTO) { %>
+                            <% FECHAAUDIINGRESOREPUESTO = Hi.FECHAAUDIINGRESOREPUESTO.toLocaleDateString(); %>
+                          <% } else { %>
+                            <% FECHAAUDIINGRESOREPUESTO = null; %>
+                          <% } %>
                         <% NOMBREUSUARIO=Hi.NOMBREUSUARIO %>
                     <tr>
                         <th><%= NOMBREREPUESTO %></th>
                         <th><%= CODIGOREPUESTO %></th>
                         <th><%= CANTIDAINGRESODREPUESTO %> </th>
                         <th><%= FECHAINGRESOREPUESTO %> <%= FECHAINGRESOREPUESTOHORA %></th>
+                        <th><%= FECHAAUDIINGRESOREPUESTO %> </th>
                         <th><%= NOMBREUSUARIO %></th>
 
                     </tr>

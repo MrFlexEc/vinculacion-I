@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <style>
         a {
             text-decoration: none;
@@ -117,17 +119,17 @@
                                     <!-- inputs--> 
                                     Código
                                         <div class="opacity-75">
-                                            <input type="text" name="codigoRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input required type="text" name="codigoRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Nombre
                                         <div class="opacity-75">
-                                            <input type="text" name="nombreRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input required type="text" name="nombreRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Descripción
                                         <div class="opacity-75">
-                                            <input type="text" name="descripcionRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input required type="text" name="descripcionRegistro" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
                                 </div>
         
@@ -137,8 +139,8 @@
                                 <div class="justify-content-start  fs-5 " style="color: #385277;  "> 
                                         Marca  
                                     <div class="btn-group form-control " style="border:none ;background-color: #C2D7DB;">
-                                        <select id="miSelect" name="marcaRegistro" class=" btn ">
-                                            <option disabled selected>Seleccione..</option>
+                                        <select required id="miSelect" name="marcaRegistro" class=" btn ">
+                                            <option  disabled selected>Seleccione..</option>
                                             <% Marca?.forEach((marca) =>{ %>  
                                                 <% id_marca= marca.IDMARCA %>
                                                 <% nombre_marca= marca.NOMBREMARCA %>  
@@ -181,7 +183,7 @@
                                      <!-- combo box categoria--> 
                                     <div class="py-1" style="position: relative; bottom: 4px; ">Categoria</div>  
                                     <div class="btn-group form-control " style=" background-color: #C2D7DB; border:none ; position: relative; bottom: 7px; ">
-                                        <select id="miSelect2"  name="categoriaRegistro" class=" btn">
+                                        <select required id="miSelect2"  name="categoriaRegistro" class=" btn">
                                             <option disabled selected>Seleccione..</option>
                                             
                                             <% Categoria?.forEach((categoria) =>{ %>  
@@ -198,7 +200,7 @@
                                     <!-- combo box proveedor--> 
                                     <div  class="py-2" style="position: relative; bottom: 10px; ">Proveedor</div>  
                                     <div class="btn-group form-control " style="background-color: #C2D7DB; border:none ; position: relative; bottom: 14px;">
-                                        <select id="miSelect3" name="proveedorRegistro" class=" btn ">
+                                        <select required id="miSelect3" name="proveedorRegistro" class=" btn ">
                                             <option disabled selected>Seleccione..</option>
 
                                             <% Proveedor?.forEach((proveedor) =>{ %>  
@@ -219,7 +221,7 @@
                             <div class="col-sm-8 col-md-2 col-lg-2 col-xl-2 p-2 ">
                                 <div class="justify-content-start  fs-5" style="color: #385277;"> 
                                         Medida  
-                                        <select  name="medidaRegistro" class=" btn border-2   dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
+                                        <select required  name="medidaRegistro" class=" btn border-2   dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #99B3D8; color: #514848; border-color: #385277;">
                                             <option disabled selected>Seleccione..</option>
 
                                             <% Medida?.forEach((medida) =>{ %>  
@@ -236,7 +238,7 @@
                                 <div class="justify-content-start fs-5 " style="color: #385277;">
                                     Modelo
                                     <div class="opacity-75">
-                                        <input name="modeloRegistro" type="text" class=" form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <input required name="modeloRegistro" type="text" class=" form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                     </div>
                                 </div>
 
@@ -252,7 +254,7 @@
                                 <div class="py-4" style="color: #385277; ">
                                     <div class="opacity-75">
                                         <div class="form-floating rounded-4 border-2">
-                                            <textarea name="observacionRegistro" style="font-size: small; background-color: #99B3D8; color: black; border-color: #385277; " class="form-control"  id="floatingTextarea"></textarea>
+                                            <textarea required name="observacionRegistro" style="font-size: small; background-color: #99B3D8; color: black; border-color: #385277; " class="form-control"  id="floatingTextarea"></textarea>
                                             <label for="floatingTextarea" style="color:  #385277;  ">Observación</label>
                                         </div>
                                          
@@ -285,15 +287,15 @@
                         <!-- input de precios --> 
                         <div class="opacity-75"> 
                             <!-- input de precios publico--> 
-                            <input name="preciopublicoRegistro" type="number" placeholder="Publico" class=" form-control rounded-3 border-2" 
+                            <input required name="preciopublicoRegistro" type="number" placeholder="Publico" class=" form-control rounded-3 border-2" 
                             style="background-color: #A4B3C8; color: black; border-color: #00264b;" >
                                 
                             <!-- input de precios mayor--> 
-                            <input name="precioalmayorRegistro" type="number" placeholder="Mayor"  class=" form-control rounded-3 border-2" 
+                            <input required name="precioalmayorRegistro" type="number" placeholder="Mayor"  class=" form-control rounded-3 border-2" 
                             style="background-color: #A4B3C8; color: black; border-color: #00264b; " >
                                 
                             <!-- input de precios Frecuente--> 
-                            <input name="preciofrecuenteRegistro" type="number" placeholder="Frecuente"  class=" form-control rounded-3 border-2" 
+                            <input required name="preciofrecuenteRegistro" type="number" placeholder="Frecuente"  class=" form-control rounded-3 border-2" 
                             style="background-color: #A4B3C8; color: black; border-color: #00264b;" >
                         </div> 
                     </div>
@@ -307,12 +309,12 @@
                     
             
                         <!-- input de cantidad maxima -->  
-                        <input name="cantidadMaximaRegistro" type="number" placeholder="Max"  class=" form-control rounded-4 border-2" 
+                        <input required name="cantidadMaximaRegistro" type="number" placeholder="Max"  class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                     
             
                         <!-- input de cantidad minima -->  
-                        <input name="cantidadMinimaRegistro"  type="number" placeholder="Min" class=" form-control rounded-4 border-2" 
+                        <input required name="cantidadMinimaRegistro"  type="number" placeholder="Min" class=" form-control rounded-4 border-2" 
                         style="background-color: #99B3D8; color: black; border-color: #00264b;" >
                                                     
                     </div>
@@ -347,22 +349,24 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     <% } else { %>
-
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           
         <% if (bienRegi) { %>
             <% if (typeof alert != "undefined") { %>
                 <script>
-                    Swal.fire({
-                    title: '<%= alertTitle %>',
-                    text:'<%= alertMessage %>',
-                    icon: '<%= alertIcon %>',
-                    showConfirmButton:<%= showConfirmButton %>,
-                    timer:<%= timer %>
-                    }).then(()=>{
-                        window.location='./<%= ruta %>'
-                    })
-                </script>
+                    Toastify({
+                      text: '<%= alertMessage %>',
+                      duration: <%= timer %> ? <%= timer %> : 1700,
+                      close: true,
+                      gravity: "top",
+                      position: "center",
+                      backgroundColor: "<%= alertIcon === 'success' ? '#51cacc' : '#e74c3c' %>",
+                      callback: function() {
+                        window.location.href = './<%= ruta %>';
+                      }
+                    }).showToast();
+                  </script>
             <% }; %>
             <% } else { %>
                 <% if (typeof alert != "undefined") { %>

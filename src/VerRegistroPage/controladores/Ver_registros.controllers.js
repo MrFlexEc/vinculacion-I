@@ -7,7 +7,7 @@ const sql = require("mssql")
 const authPageVerRegistros = async (req, res) =>{
     if(req.session.loggedin){
         const pool = await dbConnection.getConnection();
-        const resultVerRegistro = await pool.request().query('select usu.NOMBREUSUARIO,rep.IDRESPUESTO,rep.CODIGOREPUESTO, rep.NOMBREREPUESTO, rep.CANTIDADREPUESTO, rep.FECHAREPUESTO, mar.NOMBREMARCA, pro.NOMBREPROOVEDOR, cat.NOMBRECATEGORIA, pre.PUBLICOPRECIO from REPUESTO rep inner join PROVEEDOR pro on rep.IDPROOVEDOR = pro.IDPROOVEDOR inner join MARCA mar on rep.IDMARCA = MAR.IDMARCA inner join CATEGORIA cat on rep.IDCATEGORIA = cat.IDCATEGORIA inner join PRECIO pre on rep.IDRESPUESTO = pre.IDRESPUESTO inner join USUARIO_REPUESTO ur on ur.IDRESPUESTO = pre.IDRESPUESTO inner join USUARIO usu on usu.IDUSUARIO = ur.IDUSUARIO')
+        const resultVerRegistro = await pool.request().query('select usu.NOMBREUSUARIO,rep.IDRESPUESTO,rep.CODIGOREPUESTO, rep.NOMBREREPUESTO, rep.CANTIDADREPUESTO, rep.FECHAREPUESTO, mar.NOMBREMARCA, pro.NOMBREPROOVEDOR, cat.NOMBRECATEGORIA, pre.PUBLICOPRECIO from REPUESTO rep inner join MARCA mar on rep.IDMARCA = mar.IDMARCA inner join CATEGORIA cat on rep.IDCATEGORIA = cat.IDCATEGORIA inner join PRECIO pre on rep.IDRESPUESTO = pre.IDRESPUESTO inner join USUARIO_REPUESTO_PROVEEDOR ur on ur.IDRESPUESTO = pre.IDRESPUESTO inner join USUARIO usu on usu.IDUSUARIO = ur.IDUSUARIO inner join PROVEEDOR pro on ur.IDPROOVEDOR = pro.IDPROOVEDOR')
         res.render('./VerRegistroPage/views/Ver_registros',{
             login:true,
             name:req.session.name,

@@ -15,7 +15,7 @@ const authPageModificarRegistro = async (req, res) =>{
         const resultmedida2 = await pool.request().query('SELECT * FROM MEDIDA')
         const resultRegistro = await pool.request()
                                                 .input('IDRESPUESTO', sql.Int, IDREGISTROPara)
-                                                .query(' select rep.MODELOREPUESTO, pre.ALMAYORPRECIO, pre.FRECUENTEPRECIO,rep.MINCANREPUESTO,rep.MAXCANREPUESTO,rep.OBSERVACIONREPUEST,rep.DESCRIPCIONREPUESTO,rep.IDRESPUESTO,rep.CODIGOREPUESTO, rep.NOMBREREPUESTO, rep.CANTIDADREPUESTO, rep.FECHAREPUESTO, mar.NOMBREMARCA, pro.NOMBREPROOVEDOR, cat.NOMBRECATEGORIA, pre.PUBLICOPRECIO from REPUESTO rep inner join PROVEEDOR pro on rep.IDPROOVEDOR = pro.IDPROOVEDOR inner join MARCA mar on rep.IDMARCA = MAR.IDMARCA inner join CATEGORIA cat on rep.IDCATEGORIA = cat.IDCATEGORIA inner join PRECIO pre on rep.IDRESPUESTO = pre.IDRESPUESTO where  rep.IDRESPUESTO=@IDRESPUESTO')
+                                                .query(' select rep.MODELOREPUESTO, pre.ALMAYORPRECIO, pre.FRECUENTEPRECIO,rep.MINCANREPUESTO,rep.MAXCANREPUESTO,rep.OBSERVACIONREPUEST,rep.DESCRIPCIONREPUESTO,rep.IDRESPUESTO,rep.CODIGOREPUESTO, rep.NOMBREREPUESTO, rep.CANTIDADREPUESTO, rep.FECHAREPUESTO, mar.NOMBREMARCA, pro.NOMBREPROOVEDOR, cat.NOMBRECATEGORIA, pre.PUBLICOPRECIO from REPUESTO rep inner join MARCA mar on rep.IDMARCA = MAR.IDMARCA inner join CATEGORIA cat on rep.IDCATEGORIA = cat.IDCATEGORIA inner join PRECIO pre on rep.IDRESPUESTO = pre.IDRESPUESTO inner join USUARIO_REPUESTO_PROVEEDOR ur on ur.IDRESPUESTO = pre.IDRESPUESTO inner join PROVEEDOR pro on ur.IDPROOVEDOR = pro.IDPROOVEDOR where  rep.IDRESPUESTO=@IDRESPUESTO')
         res.render('./ModificarRegistroPage/views/modificar_registro',{
             login:true,
             name:req.session.name,
@@ -108,7 +108,7 @@ const EditarRegistro = async (req, res) =>{
                         }
                         if(cantidadMinimaRegistro<cantidadMaximaRegistro && cantidadMaximaRegistro>=cantidadMinimaRegistro){
                             await pool.request().input('IDRESPUESTO', sql.Int, IDRESPUESTO)
-                            .input('IDPROOVEDOR', sql.Int, proveedorRegistro)
+                            
                             .input('IDCATEGORIA', sql.Int, categoriaRegistro)
                             .input('IDMARCA', sql.Int, marcaRegistro)
                             .input('IDMEDIDA', sql.Int, medidaRegistro)
@@ -119,7 +119,7 @@ const EditarRegistro = async (req, res) =>{
                             .input('MINCANREPUESTO', sql.SmallInt, cantidadMinimaRegistro)
                             .input('MAXCANREPUESTO', sql.SmallInt, cantidadMaximaRegistro)
                             .input('OBSERVACIONREPUEST', sql.VarChar(50), observacionRegistro)
-                            .query('UPDATE  REPUESTO SET IDPROOVEDOR=@IDPROOVEDOR,IDCATEGORIA=@IDCATEGORIA,IDMARCA=@IDMARCA,IDMEDIDA=@IDMEDIDA,NOMBREREPUESTO=@NOMBREREPUESTO,CODIGOREPUESTO=@CODIGOREPUESTO,DESCRIPCIONREPUESTO=@DESCRIPCIONREPUESTO,MODELOREPUESTO=@MODELOREPUESTO,MINCANREPUESTO=@MINCANREPUESTO,MAXCANREPUESTO=@MAXCANREPUESTO,OBSERVACIONREPUEST=@OBSERVACIONREPUEST where IDRESPUESTO=@IDRESPUESTO')
+                            .query('UPDATE  REPUESTO SET IDCATEGORIA=@IDCATEGORIA,IDMARCA=@IDMARCA,IDMEDIDA=@IDMEDIDA,NOMBREREPUESTO=@NOMBREREPUESTO,CODIGOREPUESTO=@CODIGOREPUESTO,DESCRIPCIONREPUESTO=@DESCRIPCIONREPUESTO,MODELOREPUESTO=@MODELOREPUESTO,MINCANREPUESTO=@MINCANREPUESTO,MAXCANREPUESTO=@MAXCANREPUESTO,OBSERVACIONREPUEST=@OBSERVACIONREPUEST where IDRESPUESTO=@IDRESPUESTO')
 
                             const resultPrecio = await pool.request()
                                             .input('CODIGOREPUESTO', sql.VarChar(10), codigoRegistro)
@@ -133,6 +133,12 @@ const EditarRegistro = async (req, res) =>{
                                                                     .input('ALMAYORPRECIO', sql.Int, precioalmayorRegistro)
                                                                     .query('UPDATE PRECIO SET PUBLICOPRECIO=@PUBLICOPRECIO,FRECUENTEPRECIO=@FRECUENTEPRECIO,ALMAYORPRECIO=@ALMAYORPRECIO where IDRESPUESTO=@IDRESPUESTO')
 
+
+                                                 await pool.request()
+                                                 .input('IDRESPUESTO', sql.Int, id_repuesto)
+                                                 .input('IDPROOVEDOR', sql.Int, proveedorRegistro)
+                                                    .query('UPDATE USUARIO_REPUESTO_PROVEEDOR SET IDPROOVEDOR=@IDPROOVEDOR where IDRESPUESTO=@IDRESPUESTO ')
+                                                                                              
                                             }                                                   
                                             res.render('./ModificarRegistroPage/views/modificar_registro',{
                                                 bienRegi:true,

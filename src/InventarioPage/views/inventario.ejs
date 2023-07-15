@@ -9,7 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/Ytrg4r9/Monograma-Logotipo-belleza-blanco-y-negro.png" >
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     </head>
 <body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
     <% if (login){ %>
@@ -172,9 +173,10 @@
                         <% Repuesto?.forEach((repuesto) =>{ %>  
                             <% id_repuesto= repuesto.IDRESPUESTO %>
                             <% codigo_repuesto= repuesto.CODIGOREPUESTO %>  
+                            <% nombre_repuesto= repuesto.NOMBREREPUESTO %>  
  
                         
-                        <option value="<%= id_repuesto %>" style="color: #707070;"><%= codigo_repuesto%> </option>
+                        <option value="<%= id_repuesto %>" style="color: #707070;"><%= codigo_repuesto%> - <%= nombre_repuesto%></option>
                         <% }); %>
                         <!-- Agrega más opciones aquí -->
                     </select>
@@ -215,7 +217,7 @@
                                 
                                 <div class=" d-flex">
                                     Fecha
-                                    <input type="date" name="" class="form-control rounded-4 border-2 opacity-75" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                    <input type="datetime-local" name="fechaudiInventario" class="form-control rounded-4 border-2 opacity-75" style="background-color: #99B3D8; color: black; border-color: #385277;">
                             
                                 </div>
                             </div>
@@ -498,20 +500,23 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     <% } else { %>
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <% if (InventarioEY) { %>
         <% if (typeof alert != "undefined") { %>
             <script>
-                Swal.fire({
-                title: '<%= alertTitle %>',
-                text:'<%= alertMessage %>',
-                icon: '<%= alertIcon %>',
-                showConfirmButton:<%= showConfirmButton %>,
-                timer:<%= timer %>
-                }).then(()=>{
-                    window.location='./<%= ruta %>'
-                })
-            </script>
+                Toastify({
+                  text: '<%= alertMessage %>',
+                  duration: <%= timer %> ? <%= timer %> : 1700,
+                  close: true,
+                  gravity: "top",
+                  position: "center",
+                  backgroundColor: "<%= alertIcon === 'success' ? '#51cacc' : '#e74c3c' %>",
+                  callback: function() {
+                    window.location.href = './<%= ruta %>';
+                  }
+                }).showToast();
+              </script>
         <% }; %>
         <% } else { %>
             <% if (typeof alert != "undefined") { %>

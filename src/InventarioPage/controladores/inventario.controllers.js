@@ -6,7 +6,7 @@ const sql = require("mssql")
 const authPageInventario = async (req, res) =>{
     if(req.session.loggedin){
         const pool = await dbConnection.getConnection();
-        const resultInventario = await pool.request().query('select rep.IDRESPUESTO,rep.CODIGOREPUESTO, rep.NOMBREREPUESTO, rep.CANTIDADREPUESTO, rep.MINCANREPUESTO,rep.MAXCANREPUESTO,  rep.FECHAREPUESTO, mar.NOMBREMARCA, pro.NOMBREPROOVEDOR, cat.NOMBRECATEGORIA, pre.PUBLICOPRECIO from REPUESTO rep inner join PROVEEDOR pro on rep.IDPROOVEDOR = pro.IDPROOVEDOR inner join MARCA mar on rep.IDMARCA = MAR.IDMARCA inner join CATEGORIA cat on rep.IDCATEGORIA = cat.IDCATEGORIA inner join PRECIO pre on rep.IDRESPUESTO = pre.IDRESPUESTO')
+        const resultInventario = await pool.request().query('select rep.IDRESPUESTO,rep.CODIGOREPUESTO, rep.NOMBREREPUESTO, rep.CANTIDADREPUESTO, rep.MINCANREPUESTO,rep.MAXCANREPUESTO,  rep.FECHAREPUESTO, mar.NOMBREMARCA, cat.NOMBRECATEGORIA, pre.PUBLICOPRECIO from REPUESTO rep inner join MARCA mar on rep.IDMARCA = MAR.IDMARCA inner join CATEGORIA cat on rep.IDCATEGORIA = cat.IDCATEGORIA inner join PRECIO pre on rep.IDRESPUESTO = pre.IDRESPUESTO')
         const resulrepuesto = await pool.request().query('SELECT * FROM Repuesto')
 
         const RepuestoAlerta = (await pool.request().query('SELECT * FROM Repuesto')).recordset;
@@ -55,8 +55,25 @@ const authPageInventario = async (req, res) =>{
 const EgresoRepuestoIngreso = async (req, res) =>{
     
     try {
+
+        // Obtiene el valor del campo datetime-local del formulario
+    const fecha = req.body.fechaudiInventario;
+
+
+
+    let fechaFormateada;
+    if (fecha) {
+      // Formatea la fecha en el formato esperado por SQL Server (YYYY-MM-DDTHH:MM)
+      fechaFormateada = fecha.replace('T', ' ');
+    } else {
+      // Asigna null si no se seleccionó ninguna fecha
+      fechaFormateada = null;
+    }
+
+
         const accionInventario = req.body.accionInventario;
         const codigoInventario = req.body.codigoInventario;
+        const fechaudiInventario = fechaFormateada;
         const cantidadInventario = parseInt(req.body.cantidadInventario) ;
 
         if(accionInventario&&codigoInventario &&cantidadInventario){
@@ -82,7 +99,7 @@ const EgresoRepuestoIngreso = async (req, res) =>{
                   
                 }else{      
                     
-                
+                    
                 const id_usuario = req.session.idUsuario
                 await pool.request().input('CODIGOREPUESTO', sql.VarChar(20), codigoInventario)
                                     .input('CANTIDADREPUESTO', sql.SmallInt, cantidadInventario)
@@ -91,7 +108,8 @@ const EgresoRepuestoIngreso = async (req, res) =>{
                 await pool.request().input('IDUSUARIO', sql.Int, id_usuario)
                                     .input('IDRESPUESTO', sql.Int, codigoInventario)
                                     .input('CANTIDADEGRESOREPUESTO', sql.Int, cantidadInventario)
-                                    .query('INSERT INTO EGRESO_REPUESTO VALUES (@IDRESPUESTO,@IDUSUARIO,@CANTIDADEGRESOREPUESTO,GETDATE())')
+                                    .input('FECHAUDIEGRESOREPUESTO', sql.DateTime, fechaudiInventario)
+                                    .query('INSERT INTO EGRESO_REPUESTO VALUES (@IDRESPUESTO,@IDUSUARIO,@CANTIDADEGRESOREPUESTO,GETDATE(),@FECHAUDIEGRESOREPUESTO)')
 
                 res.render('./InventarioPage/views/inventario',{
                     InventarioEY:true,
@@ -139,7 +157,8 @@ const EgresoRepuestoIngreso = async (req, res) =>{
                 await pool.request().input('IDUSUARIO', sql.Int, id_usuario)
                                     .input('IDRESPUESTO', sql.Int, codigoInventario)
                                     .input('CANTIDAINGRESODREPUESTO', sql.Int, cantidadInventario)
-                                    .query('INSERT INTO INGRESO_REPUESTO VALUES (@IDRESPUESTO,@IDUSUARIO,@CANTIDAINGRESODREPUESTO,GETDATE())')
+                                    .input('FECHAAUDIINGRESOREPUESTO', sql.DateTime, fechaudiInventario)
+                                    .query('INSERT INTO INGRESO_REPUESTO VALUES (@IDRESPUESTO,@IDUSUARIO,@CANTIDAINGRESODREPUESTO,GETDATE(),@FECHAAUDIINGRESOREPUESTO)')
 
                 res.render('./InventarioPage/views/inventario',{
                     InventarioEY:true,

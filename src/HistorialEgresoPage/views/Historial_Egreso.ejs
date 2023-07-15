@@ -104,6 +104,7 @@
                         <th>Nombre</th>
                         <th>Egreso</th>
                         <th>Fecha</th>
+                        <th>FechaAudito</th>
                         <th>Creado Por</th>
                         
                     </tr>
@@ -116,12 +117,19 @@
                         <% CANTIDADEGRESOREPUESTO=He.CANTIDADEGRESOREPUESTO %>
                         <% FECHAEGRESOREPUESTO=He.FECHAEGRESOREPUESTO.toLocaleDateString() %>
                         <% FECHAEGRESOREPUESTOHORA=He.FECHAEGRESOREPUESTO.toLocaleTimeString() %>
+
+                        <% if (He.FECHAUDIEGRESOREPUESTO) { %>
+                            <% FECHAUDIEGRESOREPUESTO=He.FECHAUDIEGRESOREPUESTO.toLocaleDateString(); %>
+                          <% } else { %>
+                            <% FECHAUDIEGRESOREPUESTO = null; %>
+                          <% } %>
                         <% NOMBREUSUARIO=He.NOMBREUSUARIO %>
                     <tr>
                         <th><%= NOMBREREPUESTO %></th>
                         <th><%= CODIGOREPUESTO %></th>
                         <th><%= CANTIDADEGRESOREPUESTO %> </th>
                         <th><%= FECHAEGRESOREPUESTO %> <%= FECHAEGRESOREPUESTOHORA %></th>
+                        <th><%= FECHAUDIEGRESOREPUESTO %> </th>
                         <th><%= NOMBREUSUARIO %></th>
 
                     </tr>

@@ -9,6 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    
+
     <style>
         a {
             text-decoration: none;
@@ -89,17 +96,17 @@
                                         <!-- inputs--> 
                                         Nompre - Apellido
                                         <div class="opacity-75">
-                                            <input type="text"  name="nombreProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input required type="text"  name="nombreProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Empresa
                                         <div class="opacity-75">
-                                            <input type="text" name="empresaProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input required type="text" name="empresaProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Correo
                                         <div class="opacity-75">
-                                            <input type="text" name="correoProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input required type="email" name="correoProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
                                     </div>
             
@@ -113,17 +120,17 @@
                                         <!-- inputs--> 
                                         Contacto
                                         <div class="opacity-75">
-                                            <input type="text" name="contactoProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input required type="number" name="contactoProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Ruc
-                                        <div class="opacity-75">
-                                            <input type="text" name="rucProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                        <div  class="opacity-75">
+                                            <input required type="number" name="rucProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
 
                                         Dirección
                                         <div class="opacity-75">
-                                            <input type="text" name="direccionProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                                            <input required type="text" name="direccionProveedor" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                                         </div>
                                     </div>
             
@@ -137,7 +144,7 @@
                                     <div class=" " style="color: #385277; ">
                                         <div class="opacity-75">
                                             <div class="form-floating rounded-4 border-2">
-                                                <textarea  style="font-size: small; background-color:  #99B3D8; color: black; border-color: #385277; " class="form-control" name="observacionProveedor"  id="floatingTextarea"></textarea>
+                                                <textarea required  style="font-size: small; background-color:  #99B3D8; color: black; border-color: #385277; " class="form-control" name="observacionProveedor"  id="floatingTextarea"></textarea>
                                                 <label for="floatingTextarea" style="color:  #385277;  ">Adicional</label>
                                             </div>
                                             
@@ -176,22 +183,24 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     <% } else { %>
-
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <% if (bienProve) { %>
-        <% if (typeof alert != "undefined") { %>
-            <script>
-                Swal.fire({
-                title: '<%= alertTitle %>',
-                text:'<%= alertMessage %>',
-                icon: '<%= alertIcon %>',
-                showConfirmButton:<%= showConfirmButton %>,
-                timer:<%= timer %>
-                }).then(()=>{
-                    window.location='./<%= ruta %>'
-                })
-            </script>
-        <% }; %>
+            <% if (typeof alert != "undefined") { %>
+                <script>
+                    Toastify({
+                      text: '<%= alertMessage %>',
+                      duration: <%= timer %> ? <%= timer %> : 1700,
+                      close: true,
+                      gravity: "top",
+                      position: "center",
+                      backgroundColor: "<%= alertIcon === 'success' ? '#51cacc' : '#e74c3c' %>",
+                      callback: function() {
+                        window.location.href = './<%= ruta %>';
+                      }
+                    }).showToast();
+                  </script>
+            <% }; %>
         <% } else { %>
             <% if (typeof alert != "undefined") { %>
                 <script>
