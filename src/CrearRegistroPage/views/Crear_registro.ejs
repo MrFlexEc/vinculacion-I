@@ -208,22 +208,7 @@
                                     </div>
 
                                     <!-- combo box proveedor--> 
-                                    <div  class="py-2" style="position: relative; bottom: 10px; ">Proveedor</div>  
-                                    <div class="btn-group form-control " style="background-color: #C2D7DB; border:none ; position: relative; bottom: 14px;">
-                                        <select required id="miSelect3" name="proveedorRegistro" class=" btn ">
-                                            <option disabled selected>Seleccione..</option>
-
-                                            <% Proveedor?.forEach((proveedor) =>{ %>  
-                                                <% id_proveedor= proveedor.IDPROOVEDOR %>
-                                                <% nombre_proveedor= proveedor.NOMBREPROOVEDOR %>  
-                                                <% empresa_proveedor= proveedor.EMPRESAPROOV %>  
-                                            <option value="<%= id_proveedor %>" style="color: #707070;"><%= nombre_proveedor%>-<%=empresa_proveedor%>  </option>
-                                            <% }); %> 
-
-
-                                        </select>
-                                        
-                                    </div>
+                                    
                                 </div>       
                             </div>
 
@@ -252,10 +237,10 @@
                                     </div>
                                 </div>
 
-                                <!-- icono de agregar proveedores --> 
+                                <!-- icono de agregar proveedores  
                                 <div class="position-relative " style="right: 2rem; top: 2rem;">
                                     <a href="crearProveedor2"><img src="https://i.ibb.co/LYWsx61/mas.png" class="rounded-circle " style="height: 3rem; background-color: #99B3D8;"></a>
-                                </div>
+                                </div>-->
 
                             </div>
 

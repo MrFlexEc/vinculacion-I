@@ -178,18 +178,7 @@
                                     </div>
 
                                     <!-- combo box proveedor--> 
-                                    <div class="py-2" style="position: relative; bottom: 10px; ">Proveedor</div>  
-                                    <div class="btn-group form-control " style="background-color: #C2D7DB; border:none ; position: relative; bottom: 14px;">
-                                        <select id="miSelect3" name="proveedorRegistro" class=" btn ">
-                                            <% Proveedor2?.forEach((proveedor2) =>{ %>  
-                                                <% id_proveedor= proveedor2.IDPROOVEDOR %>
-                                                <% nombre_proveedor= proveedor2.NOMBREPROOVEDOR %>  
-                                                <% empresa_proveedor= proveedor2.EMPRESAPROOV %> 
-                                                <option value="<%= id_proveedor %>"  style="color: #707070;"<%= nombre_proveedor === RERE.NOMBREPROOVEDOR ? 'selected' : '' %>><%= nombre_proveedor%>-<%=empresa_proveedor%></option>
-                                            <% }); %> 
-                                        </select>
-                            
-                                    </div>
+                                    
                                 </div>       
                             </div>
 

@@ -168,14 +168,22 @@
             </table>
            
         </div>
+        <script>
+            $(document).ready(function() {
+            $('#miSelect').select2();
+            $('#miSelect2').select2();
+            $('#miSelect3').select2();
 
+
+            });
+        </script>
         
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 pt-5 justify-content-start fs-4 px-4" style="color: #385277; ">
             <div class="container   ">
-                <div style="font-size: 3rem; " class="">Ingreso - Egreso</div>
+                <div style="font-size: 3rem; " class=" text-center">Ingreso - Egreso</div>
                 <hr>
                 Codigo
-                <div class="opacity-75 ">
+                <div class="opacity-75 py-1">
                     <select id="miSelect" name="codigoInventario" class="form-control ">
                         <option  disabled selected >Seleccione Codigo..</option>
 
@@ -189,13 +197,19 @@
                         <% }); %>
                         <!-- Agrega más opciones aquí -->
                     </select>
-                    <script>
-                        $(document).ready(function() {
-                        $('#miSelect').select2();
-                        $('#miSelect2').select2();
+                </div>
+                
+                Proveedor
+                <div class="opacity-75 py-1 ">
+                    <select id="miSelect3" name="codigoInventario" class="form-control ">
+                        <option  disabled selected >Seleccione Proveedor..</option>
 
-                        });
-                    </script>
+                        
+ 
+                        
+                        <option value="" style="color: #707070;"></option>
+                        <!-- Agrega más opciones aquí -->
+                    </select>
                 </div>
                 <div class="row ">
                     <div class="col-6 py-3">
@@ -232,7 +246,7 @@
                                 </div>
                             </div>
                             <div class="col-1"></div>
-
+                            
                         </div>
                        
                     </div>
@@ -242,7 +256,7 @@
 
                     <div class="col-ms-6 col-md-12 col-lg-12 col-xl-12 col-xl-12 pt-2  ">
                         <button type="submit" class="btn rounded-5 border-3 form-control pt-4 pb-4" style="background-color: #81C79F; border-color: #707070;" >ACEPTAR</button>
-
+                        
                     </div>
                 </div>
 
