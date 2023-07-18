@@ -119,10 +119,10 @@
                 <thead class="table-dark " style="color: #a3c1d5;">
                     <tr>
                         <th>Ver</th>
-                        <th>Codigo</th>
+                        <th>Código</th>
                         <th>Nombre</th>
                         <th>Marca</th>
-                        <th>Categoria</th>
+                        <th>Categoría</th>
                         <th>Cantidad</th>
                         <th>Cantidad Min - Max</th>
                         <th>Precio</th>
@@ -188,9 +188,9 @@
                 
 
                 <div class="row ">
-                    <div class="col-6 py-3">
+                    <div class="col-12 py-3">
                         <hr>
-                        Accion
+                        Acción
                         <div class="opacity-75">
                             <select name="accionInventario" id="miSelect2" class="form-control ">
                                 <option  disabled selected >Seleccione</option>
@@ -200,12 +200,14 @@
                         </div>
 
                     </div>
+                    
                 
-               
-                <div class="opacity-75 py-1">
-                    Codigo
-                    <select id="miSelect" name="codigoInventario" class="form-control ">
-                        <option  disabled selected >Seleccione Codigo..</option>
+               <div>
+                Código
+                <div class=" py-1 opacity-75">
+                    
+                    <select id="miSelect" name="codigoInventario" class=" opacity-75 form-control ">
+                        <option  disabled selected  >Seleccione Código..</option>
 
                         <% Repuesto?.forEach((repuesto) =>{ %>  
                             <% id_repuesto= repuesto.IDRESPUESTO %>
@@ -219,11 +221,14 @@
                         <!-- Agrega más opciones aquí -->
                     </select>
                 </div>
+
+               </div>
                 
-                Proveedor
+                <div class="col-6 py-3">
+                    Proveedor
                 <div class="opacity-75 py-1 ">
                     <select id="miSelect3" name="proveedorInventario" class="form-control ">
-                        <option  disabled selected >Seleccione Proveedor..</option>
+                        <option  disabled selected >Seleccione..</option>
 
                         <% Proveedor?.forEach((proveedor2) =>{ %>  
                             <% id_proveedor= proveedor2.IDPROOVEDOR %>
@@ -235,12 +240,12 @@
                         <% }); %>
                     </select>
                 </div>
-            
-                    
+
+                </div>
                         <div class="col-6 py-3" > 
                             Cantidad
-                            <div class="opacity-75 py-2 d-flex ">
-                            <input type="number" name="cantidadInventario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                            <div class="opacity-75 py-3 d-flex ">
+                                <input  type="number" name="cantidadInventario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                             </div>
                         </div>
                        
