@@ -8,7 +8,7 @@ const authPageInventario = async (req, res) =>{
         const pool = await dbConnection.getConnection();
         const resultInventario = await pool.request().query('select rep.IDRESPUESTO,rep.CODIGOREPUESTO, rep.NOMBREREPUESTO, rep.CANTIDADREPUESTO, rep.MINCANREPUESTO,rep.MAXCANREPUESTO,  rep.FECHAREPUESTO, mar.NOMBREMARCA, cat.NOMBRECATEGORIA, pre.PUBLICOPRECIO from REPUESTO rep inner join MARCA mar on rep.IDMARCA = MAR.IDMARCA inner join CATEGORIA cat on rep.IDCATEGORIA = cat.IDCATEGORIA inner join PRECIO pre on rep.IDRESPUESTO = pre.IDRESPUESTO')
         const resulrepuesto = await pool.request().query('SELECT * FROM Repuesto')
-
+        const resultproveedor = await pool.request().query('SELECT * FROM PROVEEDOR')
         const RepuestoAlerta = (await pool.request().query('SELECT * FROM Repuesto')).recordset;
         const alertas = []; // arreglo para almacenar las alertas
             RepuestoAlerta?.forEach((mini) => {
@@ -34,6 +34,7 @@ const authPageInventario = async (req, res) =>{
             rol:req.session.rol,
             resultadoInven:resultInventario.recordset,
             Repuesto:resulrepuesto.recordset,
+            Proveedor:resultproveedor.recordset,
             alert: true,
             alertas: alertas,
         });
@@ -71,15 +72,22 @@ const EgresoRepuestoIngreso = async (req, res) =>{
     }
 
 
+
+       
         const accionInventario = req.body.accionInventario;
         const codigoInventario = req.body.codigoInventario;
         const fechaudiInventario = fechaFormateada;
+        const proveedorInventario = req.body.proveedorInventario;
         const cantidadInventario = parseInt(req.body.cantidadInventario) ;
+
+
 
         if(accionInventario&&codigoInventario &&cantidadInventario){
             const pool = await dbConnection.getConnection();
 
             if(accionInventario=="Egreso"){
+               
+
                 const EgresoRepuesto = await pool.request().input('CODIGOREPUESTO', sql.VarChar(20), codigoInventario)
                                                             .query('SELECT * FROM REPUESTO WHERE IDRESPUESTO=@CODIGOREPUESTO')
                 const cantidad=EgresoRepuesto.recordset[0].CANTIDADREPUESTO;  
@@ -126,6 +134,7 @@ const EgresoRepuestoIngreso = async (req, res) =>{
             }
            
             if(accionInventario=="Ingreso"){
+               
                 const IngresoRepuesto = await pool.request().input('CODIGOREPUESTO', sql.VarChar(20), codigoInventario)
                                                             .query('SELECT * FROM REPUESTO WHERE IDRESPUESTO=@CODIGOREPUESTO')
                 const maxcantidad=IngresoRepuesto.recordset[0].MAXCANREPUESTO; 
@@ -156,9 +165,10 @@ const EgresoRepuestoIngreso = async (req, res) =>{
 
                 await pool.request().input('IDUSUARIO', sql.Int, id_usuario)
                                     .input('IDRESPUESTO', sql.Int, codigoInventario)
+                                    .input('IDPROOVEDOR', sql.Int, proveedorInventario)
                                     .input('CANTIDAINGRESODREPUESTO', sql.Int, cantidadInventario)
                                     .input('FECHAAUDIINGRESOREPUESTO', sql.DateTime, fechaudiInventario)
-                                    .query('INSERT INTO INGRESO_REPUESTO VALUES (@IDRESPUESTO,@IDUSUARIO,@CANTIDAINGRESODREPUESTO,GETDATE(),@FECHAAUDIINGRESOREPUESTO)')
+                                    .query('INSERT INTO INGRESO_REPUESTO VALUES (@IDRESPUESTO,@IDUSUARIO,@IDPROOVEDOR,@CANTIDAINGRESODREPUESTO,GETDATE(),@FECHAAUDIINGRESOREPUESTO)')
 
                 res.render('./InventarioPage/views/inventario',{
                     InventarioEY:true,

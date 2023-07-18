@@ -9,7 +9,7 @@ const authPageCrearRegistro = async (req, res) =>{
         const pool = await dbConnection.getConnection();
         const resultmarca = await pool.request().query('SELECT * FROM MARCA')
         const resultcategoria = await pool.request().query('SELECT * FROM CATEGORIA')
-        const resultproveedor = await pool.request().query('SELECT * FROM PROVEEDOR')
+        
         const resultmedida = await pool.request().query('SELECT * FROM MEDIDA')
 
         res.render('./CrearRegistroPage/views/Crear_registro',{
@@ -18,7 +18,7 @@ const authPageCrearRegistro = async (req, res) =>{
             rol:req.session.rol,
             Marca:resultmarca.recordset,
             Categoria:resultcategoria.recordset,
-            Proveedor:resultproveedor.recordset,
+           
             Medida:resultmedida.recordset,
         });
     }else{
@@ -42,7 +42,7 @@ const InsertRegistro = async (req, res) =>{
         const descripcionRegistro = req.body.descripcionRegistro;
         const marcaRegistro = req.body.marcaRegistro;
         const categoriaRegistro = req.body.categoriaRegistro;
-        const proveedorRegistro = req.body.proveedorRegistro;
+       // const proveedorRegistro = req.body.proveedorRegistro;
         const medidaRegistro = req.body.medidaRegistro;
         const modeloRegistro = req.body.modeloRegistro;
         const observacionRegistro = req.body.observacionRegistro;
@@ -54,7 +54,7 @@ const InsertRegistro = async (req, res) =>{
         const pool = await dbConnection.getConnection();
         
         if(codigoRegistro && nombreRegistro && descripcionRegistro 
-            &&marcaRegistro&&categoriaRegistro &&proveedorRegistro&& medidaRegistro
+            &&marcaRegistro&&categoriaRegistro && medidaRegistro
             &&modeloRegistro && observacionRegistro && preciopublicoRegistro && precioalmayorRegistro
             && preciofrecuenteRegistro && cantidadMaximaRegistro && cantidadMinimaRegistro ){
 
@@ -139,8 +139,7 @@ const InsertRegistro = async (req, res) =>{
                                     
                                             await pool.request().input('IDUSUARIO', sql.Int, id_usuario)
                                                                 .input('IDRESPUESTO', sql.Int, id_repuesto)
-                                                                .input('IDPROOVEDOR', sql.Int, proveedorRegistro)
-                                                                .query('INSERT INTO USUARIO_REPUESTO_PROVEEDOR VALUES (@IDUSUARIO,@IDRESPUESTO,@IDPROOVEDOR)')
+                                                                .query('INSERT INTO USUARIO_REPUESTO_PROVEEDOR VALUES (@IDUSUARIO,@IDRESPUESTO)')
                                         }                                                   
                                         res.render('./CrearRegistroPage/views/Crear_registro',{
                                             bienRegi:true,

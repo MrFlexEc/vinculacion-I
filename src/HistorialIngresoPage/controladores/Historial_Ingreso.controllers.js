@@ -7,7 +7,7 @@ const sql = require("mssql")
 const authPageHistorialIngreso = async (req, res) =>{
     if(req.session.loggedin){
         const pool = await dbConnection.getConnection();
-        const resultHistorialIngreso = await pool.request().query('select rep.NOMBREREPUESTO,rep.CODIGOREPUESTO,inrep.CANTIDAINGRESODREPUESTO,inrep.FECHAINGRESOREPUESTO,inrep.FECHAAUDIINGRESOREPUESTO,usu.NOMBREUSUARIO from REPUESTO rep inner join INGRESO_REPUESTO inrep on rep.IDRESPUESTO = inrep.IDRESPUESTO inner join USUARIO usu on usu.IDUSUARIO = inrep.IDUSUARIO')
+        const resultHistorialIngreso = await pool.request().query('select prov.NOMBREPROOVEDOR, rep.NOMBREREPUESTO,rep.CODIGOREPUESTO,inrep.CANTIDAINGRESODREPUESTO,inrep.FECHAINGRESOREPUESTO,inrep.FECHAAUDIINGRESOREPUESTO,usu.NOMBREUSUARIO from REPUESTO rep inner join INGRESO_REPUESTO inrep on rep.IDRESPUESTO = inrep.IDRESPUESTO inner join USUARIO usu on usu.IDUSUARIO = inrep.IDUSUARIO inner join PROVEEDOR prov on prov.IDPROOVEDOR = inrep.IDPROOVEDOR')
         res.render('./HistorialIngresoPage/views/Historial_Ingreso',{
             login:true,
             name:req.session.name,

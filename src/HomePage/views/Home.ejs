@@ -21,6 +21,8 @@
         font-size: 16px;
         font-weight: bold;
       }
+
+      
     </style>
   </head>
 <body style="background-color: #C2D7DB; display: flex; flex-direction: column; min-height: 100vh;">
@@ -30,30 +32,29 @@
     
     <% if (typeof alertas !== "undefined" && alertas.length > 0) { %>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@3.1.4/lib/noty.min.css" />
+      <script src="https://cdn.jsdelivr.net/npm/noty@3.1.4/lib/noty.min.js"></script>
       <script>
         document.addEventListener('DOMContentLoaded', async () => {
           const alertas = JSON.parse('<%- JSON.stringify(alertas) %>');
           
-          await Swal.fire({
-            icon: alertas[0].alertIcon,
-            title: alertas[0].alertTitle,
-            text: alertas[0].alertMessage,
-            showConfirmButton: false,
-            timer: alertas[0].timer,
-          });
-    
-          for (let i = 1; i < alertas.length; i++) {
+          for (let i = 0; i < alertas.length; i++) {
             const alerta = alertas[i];
-            await Swal.fire({
-              icon: alerta.alertIcon,
-              title: alerta.alertTitle,
+            new Noty({
               text: alerta.alertMessage,
-              showConfirmButton: i === alertas.length - 1 ? alerta.showConfirmButton : false,
-              timer: alerta.timer,
-            });
+              type: 'warning',
+              timeout: alerta.timer,
+              layout: 'topRight',
+              theme: 'metroui', // Personaliza el tema según tus preferencias
+              progressBar: alerta.showConfirmButton,
+              closeWith: ['click', 'button'],
+            }).show();
           }
         });
       </script>
+      
+
     <% }; %>
     
     

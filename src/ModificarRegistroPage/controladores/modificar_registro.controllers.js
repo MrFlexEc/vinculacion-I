@@ -53,7 +53,7 @@ const EditarRegistro = async (req, res) =>{
         const descripcionRegistro = req.body.descripcionRegistro;
         const marcaRegistro = req.body.marcaRegistro;
         const categoriaRegistro = req.body.categoriaRegistro;
-        const proveedorRegistro = req.body.proveedorRegistro;
+        //const proveedorRegistro = req.body.proveedorRegistro;
         const medidaRegistro = req.body.medidaRegistro;
         const modeloRegistro = req.body.modeloRegistro;
         const observacionRegistro = req.body.observacionRegistro;
@@ -65,7 +65,7 @@ const EditarRegistro = async (req, res) =>{
         const pool = await dbConnection.getConnection();
         
         if(codigoRegistro && nombreRegistro && descripcionRegistro 
-            &&marcaRegistro&&categoriaRegistro &&proveedorRegistro&& medidaRegistro
+            &&marcaRegistro&&categoriaRegistro && medidaRegistro
             &&modeloRegistro && observacionRegistro && preciopublicoRegistro && precioalmayorRegistro
             && preciofrecuenteRegistro && cantidadMaximaRegistro && cantidadMinimaRegistro ){
            
@@ -133,12 +133,11 @@ const EditarRegistro = async (req, res) =>{
                                                                     .input('ALMAYORPRECIO', sql.Int, precioalmayorRegistro)
                                                                     .query('UPDATE PRECIO SET PUBLICOPRECIO=@PUBLICOPRECIO,FRECUENTEPRECIO=@FRECUENTEPRECIO,ALMAYORPRECIO=@ALMAYORPRECIO where IDRESPUESTO=@IDRESPUESTO')
 
-
+                                                /*
                                                  await pool.request()
                                                  .input('IDRESPUESTO', sql.Int, id_repuesto)
-                                                 .input('IDPROOVEDOR', sql.Int, proveedorRegistro)
                                                     .query('UPDATE USUARIO_REPUESTO_PROVEEDOR SET IDPROOVEDOR=@IDPROOVEDOR where IDRESPUESTO=@IDRESPUESTO ')
-                                                                                              
+                                                          */                                    
                                             }                                                   
                                             res.render('./ModificarRegistroPage/views/modificar_registro',{
                                                 bienRegi:true,

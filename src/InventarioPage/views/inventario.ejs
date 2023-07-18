@@ -16,19 +16,23 @@
 
         <% if (typeof alertas !== "undefined" && alertas.length > 0) { %>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@3.1.4/lib/noty.min.css" />
+            <script src="https://cdn.jsdelivr.net/npm/noty@3.1.4/lib/noty.min.js"></script>
             <script>
               document.addEventListener('DOMContentLoaded', async () => {
                 const alertas = JSON.parse('<%- JSON.stringify(alertas) %>');
                 
                 for (let i = 0; i < alertas.length; i++) {
                   const alerta = alertas[i];
-                  await Swal.fire({
-                    icon: alerta.alertIcon,
-                    title: alerta.alertTitle,
+                  new Noty({
                     text: alerta.alertMessage,
-                    showConfirmButton: i === alertas.length - 1 ? alerta.showConfirmButton : false,
-                    timer: alerta.timer,
-                  });
+                    type: 'warning',
+                    timeout: alerta.timer,
+                    layout: 'topRight',
+                    theme: 'metroui', // Personaliza el tema según tus preferencias
+                    progressBar: alerta.showConfirmButton,
+                    closeWith: ['click', 'button'],
+                  }).show();
                 }
               });
             </script>
@@ -181,38 +185,11 @@
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 pt-5 justify-content-start fs-4 px-4" style="color: #385277; ">
             <div class="container   ">
                 <div style="font-size: 3rem; " class=" text-center">Ingreso - Egreso</div>
-                <hr>
-                Codigo
-                <div class="opacity-75 py-1">
-                    <select id="miSelect" name="codigoInventario" class="form-control ">
-                        <option  disabled selected >Seleccione Codigo..</option>
-
-                        <% Repuesto?.forEach((repuesto) =>{ %>  
-                            <% id_repuesto= repuesto.IDRESPUESTO %>
-                            <% codigo_repuesto= repuesto.CODIGOREPUESTO %>  
-                            <% nombre_repuesto= repuesto.NOMBREREPUESTO %>  
- 
-                        
-                        <option value="<%= id_repuesto %>" style="color: #707070;"><%= codigo_repuesto%> - <%= nombre_repuesto%></option>
-                        <% }); %>
-                        <!-- Agrega más opciones aquí -->
-                    </select>
-                </div>
                 
-                Proveedor
-                <div class="opacity-75 py-1 ">
-                    <select id="miSelect3" name="codigoInventario" class="form-control ">
-                        <option  disabled selected >Seleccione Proveedor..</option>
 
-                        
- 
-                        
-                        <option value="" style="color: #707070;"></option>
-                        <!-- Agrega más opciones aquí -->
-                    </select>
-                </div>
                 <div class="row ">
                     <div class="col-6 py-3">
+                        <hr>
                         Accion
                         <div class="opacity-75">
                             <select name="accionInventario" id="miSelect2" class="form-control ">
@@ -223,11 +200,47 @@
                         </div>
 
                     </div>
+                
+               
+                <div class="opacity-75 py-1">
+                    Codigo
+                    <select id="miSelect" name="codigoInventario" class="form-control ">
+                        <option  disabled selected >Seleccione Codigo..</option>
+
+                        <% Repuesto?.forEach((repuesto) =>{ %>  
+                            <% id_repuesto= repuesto.IDRESPUESTO %>
+                            <% codigo_repuesto= repuesto.CODIGOREPUESTO %>  
+                            <% nombre_repuesto= repuesto.NOMBREREPUESTO %>  
+                            <% descricpcion_repuesto= repuesto.DESCRIPCIONREPUESTO %>
+ 
+                        
+                        <option value="<%= id_repuesto %>" style="color: #707070;"><%= codigo_repuesto%> - <%= nombre_repuesto%>- <%= descricpcion_repuesto%></option>
+                        <% }); %>
+                        <!-- Agrega más opciones aquí -->
+                    </select>
+                </div>
+                
+                Proveedor
+                <div class="opacity-75 py-1 ">
+                    <select id="miSelect3" name="proveedorInventario" class="form-control ">
+                        <option  disabled selected >Seleccione Proveedor..</option>
+
+                        <% Proveedor?.forEach((proveedor2) =>{ %>  
+                            <% id_proveedor= proveedor2.IDPROOVEDOR %>
+                            <% nombre_proveedor= proveedor2.NOMBREPROOVEDOR %>  
+                            <% empresa_proveedor= proveedor2.EMPRESAPROOV %> 
+ 
+                        
+                        <option value="<%= id_proveedor %>" style="color: #707070;"><%= nombre_proveedor%>-<%=empresa_proveedor%></option>
+                        <% }); %>
+                    </select>
+                </div>
+            
                     
                         <div class="col-6 py-3" > 
                             Cantidad
                             <div class="opacity-75 py-2 d-flex ">
-                            <input type="text" name="cantidadInventario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
+                            <input type="number" name="cantidadInventario" class="form-control rounded-4 border-2" style="background-color: #99B3D8; color: black; border-color: #385277;">
                             </div>
                         </div>
                        
@@ -275,6 +288,21 @@
 
         
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#miSelect2').change(function() {
+          if ($(this).val() === 'Egreso') {
+            $('#miSelect3').prop('disabled', true);
+          } else {
+            $('#miSelect3').prop('disabled', false);
+          }
+        });
+      });
+</script>
+
         <script>
     
         $(document).ready(function(){
