@@ -57,9 +57,9 @@ const EditarRegistro = async (req, res) =>{
         const medidaRegistro = req.body.medidaRegistro;
         const modeloRegistro = req.body.modeloRegistro;
         const observacionRegistro = req.body.observacionRegistro;
-        const preciopublicoRegistro = req.body.preciopublicoRegistro;
-        const precioalmayorRegistro = req.body.precioalmayorRegistro;
-        const preciofrecuenteRegistro = req.body.preciofrecuenteRegistro;
+        const preciopublicoRegistro = parseFloat( req.body.preciopublicoRegistro);
+        const precioalmayorRegistro = parseFloat( req.body.precioalmayorRegistro);
+        const preciofrecuenteRegistro =  parseFloat(req.body.preciofrecuenteRegistro);
         const cantidadMaximaRegistro = parseInt(req.body.cantidadMaximaRegistro);
         const cantidadMinimaRegistro = parseInt(req.body.cantidadMinimaRegistro) ;
         const pool = await dbConnection.getConnection();
@@ -128,9 +128,9 @@ const EditarRegistro = async (req, res) =>{
                                                 const id_repuesto = resultPrecio.recordset[0].IDRESPUESTO
                                                 const id_usuario = req.session.idUsuario
                                                 await pool.request().input('IDRESPUESTO', sql.Int, id_repuesto)
-                                                                    .input('PUBLICOPRECIO', sql.Int, preciopublicoRegistro)
-                                                                    .input('FRECUENTEPRECIO', sql.Int, preciofrecuenteRegistro)
-                                                                    .input('ALMAYORPRECIO', sql.Int, precioalmayorRegistro)
+                                                                    .input('PUBLICOPRECIO', sql.Decimal(10,5), preciopublicoRegistro)
+                                                                    .input('FRECUENTEPRECIO', sql.Decimal(10,5), preciofrecuenteRegistro)
+                                                                    .input('ALMAYORPRECIO', sql.Decimal(10,5), precioalmayorRegistro)
                                                                     .query('UPDATE PRECIO SET PUBLICOPRECIO=@PUBLICOPRECIO,FRECUENTEPRECIO=@FRECUENTEPRECIO,ALMAYORPRECIO=@ALMAYORPRECIO where IDRESPUESTO=@IDRESPUESTO')
 
                                                 /*
